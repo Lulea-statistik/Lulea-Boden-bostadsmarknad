@@ -22,6 +22,7 @@ def main() -> None:
         "maklar_history": read_csv("data/maklarstatistik/history.csv"),
         "listing_weekly": read_csv("data/indicators/weekly.csv"),
         "listing_monthly": read_csv("data/indicators/monthly.csv"),
+        "scb_newbuild": read_csv("data/scb/new_small_house_prices.csv"),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -32,7 +33,9 @@ def main() -> None:
         len(data["maklar_history"]),
         "market history rows,",
         len(data["listing_weekly"]),
-        "weekly listing rows",
+        "weekly listing rows,",
+        len(data["scb_newbuild"]),
+        "SCB new-build rows",
     )
 
 
