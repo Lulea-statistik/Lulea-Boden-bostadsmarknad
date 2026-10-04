@@ -8,15 +8,32 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 HISTORY = Path("data/listings/history.csv")
-OUT = Path("data/indicators/monthly.csv")
+WEEKLY_OUT = Path("data/indicators/weekly.csv")
+MONTHLY_OUT = Path("data/indicators/monthly.csv")
 
-FIELDS = [
+WEEKLY_FIELDS = [
+    "snapshot_date",
+    "year_week",
+    "kommun",
+    "bostadstyp",
+    "active_objects",
+    "new_objects",
+    "removed_objects",
+    "net_change",
+    "price_reductions",
+    "median_asking_price",
+    "median_price_per_m2",
+    "median_days_on_market",
+]
+
+MONTHLY_FIELDS = [
     "year_month",
     "kommun",
     "bostadstyp",
     "active_objects",
     "new_objects",
     "removed_objects",
+    "net_change",
     "price_reductions",
     "median_asking_price",
     "median_price_per_m2",
@@ -45,7 +62,7 @@ def parse_float(value: str) -> Optional[float]:
         return None
 
 
-def median(values: Iterable[float]) -> Optional[float]:
+def median(values: Iterable[Optional[float]]) -> Optional[float]:
     vals = [v for v in values if v is not None]
     return statistics.median(vals) if vals else None
 
@@ -57,120 +74,132 @@ def read_history() -> list[dict]:
         return list(csv.DictReader(f))
 
 
-def build(rows: list[dict]) -> list[dict]:
+def build_weekly(rows: list[dict]) -> list[dict]:
     if not rows:
         return []
 
     snapshots = sorted(
         {d for d in (parse_date(r.get("snapshot_date", "")) for r in rows) if d}
     )
-
     by_snapshot: dict[date, list[dict]] = defaultdict(list)
     for r in rows:
         d = parse_date(r.get("snapshot_date", ""))
         if d:
             by_snapshot[d].append(r)
 
-    # Compare each snapshot with the immediately preceding one.
-    transitions: dict[date, dict] = {}
-    previous_ids: set[str] = set()
-    previous_prices: dict[str, float] = {}
-
-    for d in snapshots:
-        current = by_snapshot[d]
-        current_ids = {r["object_id"] for r in current if r.get("object_id")}
-        current_prices = {
-            r["object_id"]: p
-            for r in current
-            if r.get("object_id") and (p := parse_float(r.get("utgangspris", ""))) is not None
-        }
-
-        new_ids = current_ids - previous_ids if previous_ids else current_ids
-        removed_ids = previous_ids - current_ids if previous_ids else set()
-        reduced_ids = {
-            oid
-            for oid, price in current_prices.items()
-            if oid in previous_prices and price < previous_prices[oid]
-        }
-
-        transitions[d] = {
-            "new_ids": new_ids,
-            "removed_ids": removed_ids,
-            "reduced_ids": reduced_ids,
-            "previous_rows": by_snapshot.get(snapshots[snapshots.index(d)-1], []) if snapshots.index(d) > 0 else [],
-        }
-
-        previous_ids = current_ids
-        previous_prices = current_prices
-
-    # Monthly output uses the latest snapshot in each month.
-    latest_by_month: dict[str, date] = {}
-    for d in snapshots:
-        latest_by_month[d.strftime("%Y-%m")] = d
-
     out: list[dict] = []
-    for ym, snapshot in sorted(latest_by_month.items()):
+    previous_rows: list[dict] = []
+
+    for snapshot in snapshots:
         current = by_snapshot[snapshot]
-        transition = transitions[snapshot]
+        current_by_group: dict[tuple[str, str], list[dict]] = defaultdict(list)
+        previous_by_group: dict[tuple[str, str], list[dict]] = defaultdict(list)
 
-        groups: dict[tuple[str, str], list[dict]] = defaultdict(list)
         for r in current:
-            groups[(r.get("kommun", ""), r.get("bostadstyp", ""))].append(r)
-
-        # Include groups present only in the previous snapshot so removals are not lost.
-        previous_rows = transition["previous_rows"]
+            current_by_group[(r.get("kommun", ""), r.get("bostadstyp", ""))].append(r)
         for r in previous_rows:
-            groups.setdefault((r.get("kommun", ""), r.get("bostadstyp", "")), [])
+            previous_by_group[(r.get("kommun", ""), r.get("bostadstyp", ""))].append(r)
 
-        for (kommun, bostadstyp), group in sorted(groups.items()):
-            ids = {r.get("object_id", "") for r in group}
-            previous_group_ids = {
-                r.get("object_id", "")
-                for r in previous_rows
-                if r.get("kommun", "") == kommun and r.get("bostadstyp", "") == bostadstyp
+        groups = sorted(set(current_by_group) | set(previous_by_group))
+        for kommun, bostadstyp in groups:
+            group = current_by_group.get((kommun, bostadstyp), [])
+            prev_group = previous_by_group.get((kommun, bostadstyp), [])
+
+            ids = {r.get("object_id", "") for r in group if r.get("object_id")}
+            prev_ids = {r.get("object_id", "") for r in prev_group if r.get("object_id")}
+            new_ids = ids - prev_ids if previous_rows else ids
+            removed_ids = prev_ids - ids if previous_rows else set()
+
+            prev_prices = {
+                r.get("object_id", ""): p
+                for r in prev_group
+                if r.get("object_id")
+                and (p := parse_float(r.get("utgangspris", ""))) is not None
             }
+            reduced = 0
+            for r in group:
+                oid = r.get("object_id", "")
+                price = parse_float(r.get("utgangspris", ""))
+                if oid in prev_prices and price is not None and price < prev_prices[oid]:
+                    reduced += 1
 
-            asking_prices = [parse_float(r.get("utgangspris", "")) for r in group]
+            asking = [parse_float(r.get("utgangspris", "")) for r in group]
             ppm2 = [parse_float(r.get("pris_per_m2", "")) for r in group]
-
-            days = []
+            days: list[float] = []
             for r in group:
                 first = parse_date(r.get("first_seen", ""))
                 if first:
-                    days.append((snapshot - first).days)
+                    days.append(float((snapshot - first).days))
 
+            iso_year, iso_week, _ = snapshot.isocalendar()
             out.append(
                 {
-                    "year_month": ym,
+                    "snapshot_date": snapshot.isoformat(),
+                    "year_week": f"{iso_year}-V{iso_week:02d}",
                     "kommun": kommun,
                     "bostadstyp": bostadstyp,
-                    "active_objects": len(ids - {""}),
-                    "new_objects": len((ids & transition["new_ids"]) - {""}),
-                    "removed_objects": len((previous_group_ids & transition["removed_ids"]) - {""}),
-                    "price_reductions": len((ids & transition["reduced_ids"]) - {""}),
-                    "median_asking_price": median(asking_prices),
+                    "active_objects": len(ids),
+                    "new_objects": len(new_ids),
+                    "removed_objects": len(removed_ids),
+                    "net_change": len(new_ids) - len(removed_ids),
+                    "price_reductions": reduced,
+                    "median_asking_price": median(asking),
                     "median_price_per_m2": median(ppm2),
                     "median_days_on_market": median(days),
                 }
             )
 
+        previous_rows = current
+
     return out
 
 
-def write(rows: list[dict]) -> None:
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    with OUT.open("w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+def build_monthly(weekly: list[dict]) -> list[dict]:
+    latest: dict[tuple[str, str, str], dict] = {}
+    for row in weekly:
+        ym = row["snapshot_date"][:7]
+        key = (ym, row["kommun"], row["bostadstyp"])
+        old = latest.get(key)
+        if old is None or row["snapshot_date"] > old["snapshot_date"]:
+            latest[key] = row
+
+    out: list[dict] = []
+    for (ym, kommun, bostadstyp), row in sorted(latest.items()):
+        out.append(
+            {
+                "year_month": ym,
+                "kommun": kommun,
+                "bostadstyp": bostadstyp,
+                "active_objects": row["active_objects"],
+                "new_objects": row["new_objects"],
+                "removed_objects": row["removed_objects"],
+                "net_change": row["net_change"],
+                "price_reductions": row["price_reductions"],
+                "median_asking_price": row["median_asking_price"],
+                "median_price_per_m2": row["median_price_per_m2"],
+                "median_days_on_market": row["median_days_on_market"],
+            }
+        )
+    return out
+
+
+def write(path: Path, fields: list[str], rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(rows)
 
 
 def main() -> None:
     rows = read_history()
-    indicators = build(rows)
-    write(indicators)
+    weekly = build_weekly(rows)
+    monthly = build_monthly(weekly)
+    write(WEEKLY_OUT, WEEKLY_FIELDS, weekly)
+    write(MONTHLY_OUT, MONTHLY_FIELDS, monthly)
     print(f"Read {len(rows)} listing rows")
-    print(f"Wrote {len(indicators)} indicator rows to {OUT}")
+    print(f"Wrote {len(weekly)} weekly indicator rows to {WEEKLY_OUT}")
+    print(f"Wrote {len(monthly)} monthly indicator rows to {MONTHLY_OUT}")
 
 
 if __name__ == "__main__":
