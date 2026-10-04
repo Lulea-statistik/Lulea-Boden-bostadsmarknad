@@ -14,6 +14,7 @@ function currentRows(){return DATA.maklar_current||[];}
 function historyRows(){return DATA.maklar_history||[];}
 function weeklyRows(){return DATA.listing_weekly||[];}
 function scbRows(){return DATA.scb_newbuild||[];}
+function scbHolidayRows(){return DATA.scb_holiday_house||[];}
 
 function tabs(){
   document.querySelectorAll("#tabs button").forEach(btn=>btn.addEventListener("click",()=>{
@@ -157,6 +158,44 @@ function scbCharts(){
   makeChart("scbDwellings",{type:"bar",data:{labels:dwell.map(r=>r.year),datasets:[{label:"Antal lägenheter",data:dwell.map(r=>num(r.value)),backgroundColor:"#00528c"}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
 }
 
+
+function scbHolidaySetup(){
+  const rows=scbHolidayRows();
+  const has=rows.length>0;
+  document.querySelectorAll(".scbholiday-card").forEach(el=>el.style.display=has?"block":"none");
+  $("scbHolidayEmpty").style.display=has?"none":"block";
+  $("scbHolidayEmpty").textContent=has?"":"SCB:s fritidshusdata är ännu inte hämtad. Kör workflowet Update SCB housing prices.";
+  if(!has)return;
+
+  const regions=[...new Set(rows.map(r=>r.region).filter(Boolean))].sort();
+  const current=$("scbHolidayRegion").value;
+  $("scbHolidayRegion").innerHTML=regions.map(v=>'<option>'+v+'</option>').join("");
+  const preferred=regions.find(v=>/övre norrland/i.test(v)) || regions.find(v=>/norrland/i.test(v)) || regions[0];
+  $("scbHolidayRegion").value=regions.includes(current)?current:preferred;
+  scbHolidayCharts();
+}
+
+function scbHolidaySeries(measureNeedle){
+  const region=$("scbHolidayRegion").value;
+  return scbHolidayRows()
+    .filter(r=>r.region===region&&r.measure.toLowerCase().includes(measureNeedle.toLowerCase()))
+    .sort((a,b)=>a.quarter.localeCompare(b.quarter));
+}
+
+function scbHolidayCharts(){
+  if(!scbHolidayRows().length)return;
+  const common={responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false}};
+  const price=scbHolidaySeries("Köpeskilling, medelvärde");
+  const sales=scbHolidaySeries("Antal");
+  const kt=scbHolidaySeries("Köpeskillingskoefficient");
+  const tax=scbHolidaySeries("Bas-/taxeringsvärde");
+
+  makeChart("scbHolidayPrice",{type:"line",data:{labels:price.map(r=>r.quarter),datasets:[{label:"Köpeskilling, tkr",data:price.map(r=>num(r.value)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmtInt(v)}}}}});
+  makeChart("scbHolidaySales",{type:"bar",data:{labels:sales.map(r=>r.quarter),datasets:[{label:"Antal",data:sales.map(r=>num(r.value)),backgroundColor:"#2e8bb7"}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+  makeChart("scbHolidayKT",{type:"line",data:{labels:kt.map(r=>r.quarter),datasets:[{label:"K/T-tal",data:kt.map(r=>num(r.value)),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",tension:.15}]},options:{...common,plugins:{legend:{display:false}}}});
+  makeChart("scbHolidayTax",{type:"line",data:{labels:tax.map(r=>r.quarter),datasets:[{label:"Bas-/taxeringsvärde, tkr",data:tax.map(r=>num(r.value)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmtInt(v)}}}}});
+}
+
 function coverage(){
   const h=historyRows(),w=weeklyRows(),dates=[...new Set(h.map(r=>r.source_updated).filter(Boolean))].sort();
   $("coverage").innerHTML='<table><tbody>'+
@@ -168,13 +207,14 @@ function coverage(){
     '</tbody></table>';
 }
 
-function renderAll(){overview();historyCharts();compareChart();weeklyCharts();scbSetup();coverage();}
+function renderAll(){overview();historyCharts();compareChart();weeklyCharts();scbSetup();scbHolidaySetup();coverage();}
 async function init(){
   DATA=await fetch("dashboard_data.json?v="+Date.now()).then(r=>{if(!r.ok)throw new Error("Kunde inte läsa dashboard_data.json");return r.json();});
   tabs();setUpdated();
   ["municipality","propertyType","period","compareMetric"].forEach(id=>$(id).addEventListener("change",renderAll));
   $("scbRegion").addEventListener("change",scbCharts);
   $("scbPriceType").addEventListener("change",scbCharts);
+  $("scbHolidayRegion").addEventListener("change",scbHolidayCharts);
   $("resetFilters").addEventListener("click",()=>{$("municipality").value="Luleå";$("propertyType").value="Bostadsrätter";$("period").value="3 månader";$("compareMetric").value="pris_per_m2";renderAll();});
   renderAll();
 }
