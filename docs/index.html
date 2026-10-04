@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Luleå–Boden bostadsmarknad</title>
+  <link rel="icon" type="image/png" href="https://lulea-statistik.github.io/SMHI_Lulea-Kallax_weather-climate/favicon.png?v=3">
+  <link rel="stylesheet" href="style.css?v=1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Luleå–Boden bostadsmarknad</h1>
+    <p>Försäljningsstatistik och veckovisa marknadssnapshots</p>
+  </div>
+  <div id="updated" class="updated"></div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-page="overview" class="active">Översikt</button>
+  <button data-page="pricechange">Prisutveckling</button>
+  <button data-page="sales">Försäljningar</button>
+  <button data-page="prices">Prisnivå</button>
+  <button data-page="compare">Kommunjämförelse</button>
+  <button data-page="supply">Veckoutbud</button>
+  <button data-page="flows">Veckoflöden</button>
+  <button data-page="data">Data</button>
+</nav>
+
+<main>
+  <section class="filters">
+    <label>Kommun
+      <select id="municipality"><option>Luleå</option><option>Boden</option></select>
+    </label>
+    <label>Bostadstyp
+      <select id="propertyType">
+        <option>Bostadsrätter</option><option>Villor</option><option>Fritidshus</option>
+      </select>
+    </label>
+    <label>Period
+      <select id="period"><option>3 månader</option><option>12 månader</option></select>
+    </label>
+    <button id="resetFilters">Återställ</button>
+  </section>
+
+  <section id="page-overview" class="page active">
+    <div class="source-note">Källa: Svensk Mäklarstatistik. Veckosnapshotdelen aktiveras först när en uttryckligen tillåten annonskälla finns.</div>
+    <div id="overviewCards" class="metric-grid"></div>
+    <div class="chart-card"><h2>Aktuellt läge – Luleå och Boden</h2><p class="hint">Vald bostadstyp och period. Diagrammet jämför kr/m² mellan kommunerna.</p><canvas id="overviewCompare"></canvas></div>
+    <div class="chart-card"><h2>Aktuellt antal sålda</h2><p class="hint">Vald bostadstyp och period.</p><canvas id="overviewSales"></canvas></div>
+  </section>
+
+  <section id="page-pricechange" class="page">
+    <div class="chart-card tall"><h2>Prisutveckling över tid</h2><p class="hint">Samma huvudmått som hos Svensk Mäklarstatistik. Historiken byggs på vid varje ny publicering.</p><canvas id="priceChange"></canvas></div>
+  </section>
+
+  <section id="page-sales" class="page">
+    <div class="chart-card tall"><h2>Antal försäljningar över tid</h2><p class="hint">3- och 12-månadersvärden för vald kommun och bostadstyp.</p><canvas id="salesHistory"></canvas></div>
+  </section>
+
+  <section id="page-prices" class="page">
+    <div class="chart-card"><h2>Kr per m² över tid</h2><canvas id="ppm2History"></canvas></div>
+    <div class="chart-card"><h2>Medelpris över tid</h2><canvas id="meanPriceHistory"></canvas></div>
+  </section>
+
+  <section id="page-compare" class="page">
+    <div class="page-tools">
+      <label>Jämförelsemått
+        <select id="compareMetric">
+          <option value="pris_per_m2">Kr/m²</option>
+          <option value="medelpris">Medelpris</option>
+          <option value="antal_salda">Antal sålda</option>
+          <option value="prisutveckling_pct">Prisutveckling</option>
+        </select>
+      </label>
+    </div>
+    <div class="chart-card tall"><h2>Luleå jämfört med Boden</h2><p class="hint">Aktuell publicering, vald bostadstyp och period.</p><canvas id="municipalityCompare"></canvas></div>
+  </section>
+
+  <section id="page-supply" class="page">
+    <div id="weeklySupplyEmpty" class="empty-state"></div>
+    <div class="chart-card tall weekly-card"><h2>Aktiva objekt per vecka</h2><p class="hint">Byggs från veckovisa snapshots när en tillåten annonskälla är ansluten.</p><canvas id="weeklySupply"></canvas></div>
+    <div class="chart-card weekly-card"><h2>Median utgångspris</h2><canvas id="weeklyPrice"></canvas></div>
+    <div class="chart-card weekly-card"><h2>Median annonstid</h2><canvas id="weeklyDays"></canvas></div>
+  </section>
+
+  <section id="page-flows" class="page">
+    <div id="weeklyFlowsEmpty" class="empty-state"></div>
+    <div class="chart-card tall weekly-card"><h2>Nya och försvunna objekt per vecka</h2><p class="hint">Visar marknadens inflöde och utflöde mellan snapshots.</p><canvas id="weeklyFlows"></canvas></div>
+    <div class="chart-card weekly-card"><h2>Nettoförändring i utbudet</h2><canvas id="weeklyNet"></canvas></div>
+    <div class="chart-card weekly-card"><h2>Prissänkningar</h2><p class="hint">Antal objekt vars utgångspris minskat sedan föregående snapshot.</p><canvas id="weeklyReductions"></canvas></div>
+  </section>
+
+  <section id="page-data" class="page">
+    <div class="chart-card">
+      <h2>Datatäckning</h2>
+      <div id="coverage"></div>
+    </div>
+    <div class="chart-card full">
+      <h2>Senaste Mäklarstatistik</h2>
+      <div id="dataTable" class="table-scroll"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span>
+  <span>Försäljningskälla: Svensk Mäklarstatistik.</span>
+</footer>
+<script src="app.js?v=1"></script>
+</body>
+</html>
