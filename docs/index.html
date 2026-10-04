@@ -25,6 +25,7 @@
   <button data-page="compare">Kommunjämförelse</button>
   <button data-page="supply">Veckoutbud</button>
   <button data-page="flows">Veckoflöden</button>
+  <button data-page="scb">SCB nyproduktion</button>
   <button data-page="data">Data</button>
 </nav>
 
@@ -92,6 +93,23 @@
     <div class="chart-card weekly-card"><h2>Prissänkningar</h2><p class="hint">Antal objekt vars utgångspris minskat sedan föregående snapshot.</p><canvas id="weeklyReductions"></canvas></div>
   </section>
 
+  <section id="page-scb" class="page">
+    <div class="source-note">SCB-tabellen avser nybyggda ordinära gruppbyggda småhus och större regioner, inte kommunnivå för Luleå/Boden. Den ska därför läsas som regional kostnadsbakgrund till bostadsmarknaden.</div>
+    <div class="page-tools">
+      <label>SCB-region
+        <select id="scbRegion"></select>
+      </label>
+      <label>Pris
+        <select id="scbPriceType"></select>
+      </label>
+    </div>
+    <div id="scbEmpty" class="empty-state"></div>
+    <div class="chart-card tall scb-card"><h2>Produktionspris per bostadsarea</h2><p class="hint">Totalt produktionspris för nybyggda gruppbyggda småhus.</p><canvas id="scbTotalPrice"></canvas></div>
+    <div class="chart-card scb-card"><h2>Byggnadspris och markpris per m²</h2><canvas id="scbCostParts"></canvas></div>
+    <div class="chart-card scb-card"><h2>Bostadsarea per lägenhet</h2><canvas id="scbArea"></canvas></div>
+    <div class="chart-card scb-card"><h2>Underlag – antal lägenheter</h2><p class="hint">Antalet lägenheter som SCB:s prisstatistik bygger på.</p><canvas id="scbDwellings"></canvas></div>
+  </section>
+
   <section id="page-data" class="page">
     <div class="chart-card">
       <h2>Datatäckning</h2>
@@ -108,6 +126,6 @@
   <span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span>
   <span>Försäljningskälla: Svensk Mäklarstatistik.</span>
 </footer>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>
