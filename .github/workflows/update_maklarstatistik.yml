@@ -38,7 +38,9 @@ jobs:
 
       - name: Commit updated data
         run: |
-          if git diff --quiet -- data/maklarstatistik; then
+          # git diff ignores untracked files. On the first successful run both CSV files
+          # are new, so use git status to detect tracked *and* untracked data changes.
+          if [ -z "$(git status --porcelain -- data/maklarstatistik)" ]; then
             echo "No data changes."
             exit 0
           fi
