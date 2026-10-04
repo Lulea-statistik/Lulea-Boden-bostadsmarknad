@@ -1,4 +1,4 @@
-name: Update SCB new-build prices
+name: Update SCB housing prices
 
 on:
   workflow_dispatch:
@@ -27,8 +27,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Fetch SCB data
+      - name: Fetch SCB new-build data
         run: python src/fetch_scb_newbuild_prices.py
+
+      - name: Fetch SCB holiday-house prices
+        run: python src/fetch_scb_holiday_house_prices.py
 
       - name: Build dashboard data
         run: python src/build_dashboard_data.py
@@ -43,5 +46,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/scb docs/dashboard_data.json
-          git commit -m "Update SCB new-build prices"
+          git commit -m "Update SCB housing prices"
           git push
