@@ -26,6 +26,7 @@
   <button data-page="supply">Veckoutbud</button>
   <button data-page="flows">Veckoflöden</button>
   <button data-page="scb">SCB nyproduktion</button>
+  <button data-page="scbholiday">SCB fritidshus</button>
   <button data-page="data">Data</button>
 </nav>
 
@@ -110,6 +111,20 @@
     <div class="chart-card scb-card"><h2>Underlag – antal lägenheter</h2><p class="hint">Antalet lägenheter som SCB:s prisstatistik bygger på.</p><canvas id="scbDwellings"></canvas></div>
   </section>
 
+  <section id="page-scbholiday" class="page">
+    <div class="source-note">SCB:s kvartalsstatistik för försålda fritidshus, 1998K1–2026K1. För Luleå/Boden är <strong>Övre Norrland</strong> den relevanta regionala jämförelsen. Uppgifter från 2026 är preliminära.</div>
+    <div class="page-tools">
+      <label>Region
+        <select id="scbHolidayRegion"></select>
+      </label>
+    </div>
+    <div id="scbHolidayEmpty" class="empty-state"></div>
+    <div class="chart-card tall scbholiday-card"><h2>Köpeskilling, medelvärde</h2><p class="hint">Tusen kronor per försålt fritidshus, kvartalsvis.</p><canvas id="scbHolidayPrice"></canvas></div>
+    <div class="chart-card scbholiday-card"><h2>Antal försålda fritidshus</h2><canvas id="scbHolidaySales"></canvas></div>
+    <div class="chart-card scbholiday-card"><h2>Köpeskillingskoefficient</h2><p class="hint">Köpeskilling dividerat med bas-/taxeringsvärde.</p><canvas id="scbHolidayKT"></canvas></div>
+    <div class="chart-card scbholiday-card"><h2>Bas-/taxeringsvärde, medelvärde</h2><p class="hint">Tusen kronor. Taxeringsår ändras över tidsserien enligt SCB:s definitioner.</p><canvas id="scbHolidayTax"></canvas></div>
+  </section>
+
   <section id="page-data" class="page">
     <div class="chart-card">
       <h2>Datatäckning</h2>
@@ -126,6 +141,6 @@
   <span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span>
   <span>Försäljningskälla: Svensk Mäklarstatistik.</span>
 </footer>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
