@@ -182,17 +182,40 @@ function scbHolidaySeries(measureNeedle){
     .sort((a,b)=>a.quarter.localeCompare(b.quarter));
 }
 
+function scbHolidaySeriesFor(region,measureNeedle){
+  return scbHolidayRows()
+    .filter(r=>r.region===region&&r.measure.toLowerCase().includes(measureNeedle.toLowerCase()))
+    .sort((a,b)=>a.quarter.localeCompare(b.quarter));
+}
+
 function scbHolidayCharts(){
   if(!scbHolidayRows().length)return;
   const common={responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false}};
-  const price=scbHolidaySeries("Köpeskilling, medelvärde");
-  const sales=scbHolidaySeries("Antal");
-  const kt=scbHolidaySeries("Köpeskillingskoefficient");
-  const tax=scbHolidaySeries("Bas-/taxeringsvärde");
+  const region=$("scbHolidayRegion").value;
 
-  makeChart("scbHolidayPrice",{type:"line",data:{labels:price.map(r=>r.quarter),datasets:[{label:"Köpeskilling, tkr",data:price.map(r=>num(r.value)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmtInt(v)}}}}});
+  const price=scbHolidaySeriesFor(region,"Köpeskilling, medelvärde");
+  const priceRiket=scbHolidaySeriesFor("Riket","Köpeskilling, medelvärde");
+  const sales=scbHolidaySeriesFor(region,"Antal");
+  const kt=scbHolidaySeriesFor(region,"Köpeskillingskoefficient");
+  const ktRiket=scbHolidaySeriesFor("Riket","Köpeskillingskoefficient");
+  const tax=scbHolidaySeriesFor(region,"Bas-/taxeringsvärde");
+
+  const allPriceQuarters=[...new Set([...price.map(r=>r.quarter),...priceRiket.map(r=>r.quarter)])].sort();
+  const allKtQuarters=[...new Set([...kt.map(r=>r.quarter),...ktRiket.map(r=>r.quarter)])].sort();
+  const lookup=(rows,q)=>{const r=rows.find(x=>x.quarter===q);return r?num(r.value):null;};
+
+  makeChart("scbHolidayPrice",{type:"line",data:{labels:allPriceQuarters,datasets:[
+    {label:region,data:allPriceQuarters.map(q=>lookup(price,q)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15},
+    {label:"Riket",data:allPriceQuarters.map(q=>lookup(priceRiket,q)),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",tension:.15}
+  ]},options:{...common,scales:{y:{ticks:{callback:v=>fmtInt(v)}}}}});
+
   makeChart("scbHolidaySales",{type:"bar",data:{labels:sales.map(r=>r.quarter),datasets:[{label:"Antal",data:sales.map(r=>num(r.value)),backgroundColor:"#2e8bb7"}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-  makeChart("scbHolidayKT",{type:"line",data:{labels:kt.map(r=>r.quarter),datasets:[{label:"K/T-tal",data:kt.map(r=>num(r.value)),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",tension:.15}]},options:{...common,plugins:{legend:{display:false}}}});
+
+  makeChart("scbHolidayKT",{type:"line",data:{labels:allKtQuarters,datasets:[
+    {label:region,data:allKtQuarters.map(q=>lookup(kt,q)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15},
+    {label:"Riket",data:allKtQuarters.map(q=>lookup(ktRiket,q)),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",tension:.15}
+  ]},options:common});
+
   makeChart("scbHolidayTax",{type:"line",data:{labels:tax.map(r=>r.quarter),datasets:[{label:"Bas-/taxeringsvärde, tkr",data:tax.map(r=>num(r.value)),borderColor:"#00528c",backgroundColor:"#00528c",tension:.15}]},options:{...common,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>fmtInt(v)}}}}});
 }
 
