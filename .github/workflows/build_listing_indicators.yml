@@ -1,0 +1,41 @@
+name: Build listing indicators
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "data/listings/history.csv"
+      - "src/build_indicators.py"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build indicators
+        run: python src/build_indicators.py
+
+      - name: Commit indicators
+        run: |
+          if [ -z "$(git status --porcelain -- data/indicators)" ]; then
+            echo "No indicator changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/indicators
+          git commit -m "Update listing indicators"
+          git push
