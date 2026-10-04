@@ -1,108 +1,126 @@
 from __future__ import annotations
 
 import csv
-import itertools
+import io
 import json
-import re
 from pathlib import Path
 
 import requests
 
-TABLE_ID = "000003J5"
-API_URL = f"https://statistikdatabasen.scb.se/api/v2/tables/{TABLE_ID}/data"
+API_URL = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/BO/BO0201/BO0201C/PrisPerAreorSM02"
+SOURCE_URL = "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0201__BO0201C/PrisPerAreorSM02/"
 OUT = Path("data/scb/new_small_house_prices.csv")
-FIELDS = ["measure", "region", "price_type", "year", "value", "table_id", "source_url"]
+FIELDS = ["measure", "region", "price_type", "year", "value", "source_url"]
 
 
-def ordered_codes(category: dict) -> list[str]:
-    index = category.get("index", {})
-    if isinstance(index, list):
-        return list(index)
-    if isinstance(index, dict):
-        return [k for k, _ in sorted(index.items(), key=lambda kv: kv[1])]
-    return []
-
-
-def label_for(category: dict, code: str) -> str:
-    labels = category.get("label", {}) or {}
-    return labels.get(code, code)
-
-
-def normalise_label(value: str) -> str:
-    return re.sub(r"[^a-zåäö0-9]+", "", value.lower())
-
-
-def choose_dimension(dim_ids: list[str], dimensions: dict, kind: str) -> str:
-    candidates = []
-    for dim_id in dim_ids:
-        label = str(dimensions.get(dim_id, {}).get("label", dim_id))
-        norm = normalise_label(label + " " + dim_id)
-        candidates.append((dim_id, norm))
-    tests = {
-        "measure": ["tabellinnehåll", "contents", "content"],
-        "region": ["region"],
-        "price_type": ["bruttonettopris", "pristyp", "price"],
-        "year": ["år", "time", "year"],
-    }
-    for needle in tests[kind]:
-        for dim_id, norm in candidates:
-            if normalise_label(needle) in norm:
-                return dim_id
-    raise RuntimeError(f"Could not identify {kind} dimension from {candidates}")
-
-
-def main() -> None:
-    params = [
-        ("lang", "sv"),
-        ("outputFormat", "json-stat2"),
-    ]
-    response = requests.get(
+def fetch_metadata() -> dict:
+    r = requests.get(
         API_URL,
-        params=params,
         timeout=60,
         headers={"User-Agent": "Lulea-Boden-bostadsmarknad/1.0 (public statistical analysis)"},
     )
-    response.raise_for_status()
-    data = response.json()
+    r.raise_for_status()
+    return r.json()
+
+
+def build_query(metadata: dict) -> dict:
+    query = []
+    for variable in metadata["variables"]:
+        query.append(
+            {
+                "code": variable["code"],
+                "selection": {"filter": "all", "values": ["*"]},
+            }
+        )
+    return {"query": query, "response": {"format": "json-stat2"}}
+
+
+def labels_from_metadata(metadata: dict) -> dict[str, dict[str, str]]:
+    out: dict[str, dict[str, str]] = {}
+    for variable in metadata["variables"]:
+        values = variable.get("values", [])
+        labels = variable.get("valueTexts", values)
+        out[variable["code"]] = dict(zip(values, labels))
+    return out
+
+
+def identify_dimensions(metadata: dict) -> dict[str, str]:
+    result = {}
+    for variable in metadata["variables"]:
+        code = variable["code"]
+        text = (variable.get("text", "") + " " + code).lower()
+        if "region" in text:
+            result["region"] = code
+        elif "brutto" in text or "netto" in text or "pris" in text and "tabell" not in text:
+            result["price_type"] = code
+        elif "tabellinnehåll" in text or "contents" in text:
+            result["measure"] = code
+        elif "år" in text or "time" in text or variable.get("time"):
+            result["year"] = code
+
+    # Fallback to table order used by this SCB table.
+    codes = [v["code"] for v in metadata["variables"]]
+    if "region" not in result and len(codes) > 0:
+        result["region"] = codes[0]
+    if "price_type" not in result and len(codes) > 1:
+        result["price_type"] = codes[1]
+    if "measure" not in result and len(codes) > 2:
+        result["measure"] = codes[2]
+    if "year" not in result and len(codes) > 3:
+        result["year"] = codes[3]
+    return result
+
+
+def ordered_codes(category: dict) -> list[str]:
+    idx = category.get("index", {})
+    if isinstance(idx, list):
+        return idx
+    return [k for k, _ in sorted(idx.items(), key=lambda kv: kv[1])]
+
+
+def main() -> None:
+    metadata = fetch_metadata()
+    query = build_query(metadata)
+
+    r = requests.post(
+        API_URL,
+        json=query,
+        timeout=120,
+        headers={"User-Agent": "Lulea-Boden-bostadsmarknad/1.0 (public statistical analysis)"},
+    )
+    r.raise_for_status()
+    data = r.json()
 
     dim_ids = data["id"]
-    sizes = data["size"]
     dimensions = data["dimension"]
-    values = data.get("value", [])
-
-    measure_dim = choose_dimension(dim_ids, dimensions, "measure")
-    region_dim = choose_dimension(dim_ids, dimensions, "region")
-    price_dim = choose_dimension(dim_ids, dimensions, "price_type")
-    year_dim = choose_dimension(dim_ids, dimensions, "year")
+    values = data["value"]
+    labels = labels_from_metadata(metadata)
+    dims = identify_dimensions(metadata)
 
     codes_by_dim = {d: ordered_codes(dimensions[d]["category"]) for d in dim_ids}
-    expected = 1
-    for size in sizes:
-        expected *= size
-    if isinstance(values, list) and len(values) != expected:
-        raise RuntimeError(f"Unexpected JSON-stat value count: {len(values)} != {expected}")
 
     rows = []
-    combos = itertools.product(*(codes_by_dim[d] for d in dim_ids))
-    for flat_index, combo in enumerate(combos):
-        combo_map = dict(zip(dim_ids, combo))
-        if isinstance(values, list):
-            value = values[flat_index]
-        else:
-            value = values.get(str(flat_index))
+    flat_index = 0
 
-        def lbl(dim: str) -> str:
-            return label_for(dimensions[dim]["category"], combo_map[dim])
+    import itertools
+    for combo in itertools.product(*(codes_by_dim[d] for d in dim_ids)):
+        combo_map = dict(zip(dim_ids, combo))
+        value = values[flat_index] if isinstance(values, list) else values.get(str(flat_index))
+        flat_index += 1
+
+        def label(dim_key: str) -> str:
+            code = dims[dim_key]
+            raw = combo_map[code]
+            return labels.get(code, {}).get(raw, raw)
 
         rows.append(
             {
-                "measure": lbl(measure_dim),
-                "region": lbl(region_dim),
-                "price_type": lbl(price_dim),
-                "year": lbl(year_dim),
+                "measure": label("measure"),
+                "region": label("region"),
+                "price_type": label("price_type"),
+                "year": label("year"),
                 "value": "" if value is None else value,
-                "table_id": TABLE_ID,
-                "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0201__BO0201C/PrisPerAreorSM02/",
+                "source_url": SOURCE_URL,
             }
         )
 
@@ -114,6 +132,7 @@ def main() -> None:
 
     print(f"Wrote {len(rows)} SCB rows to {OUT}")
     print("Regions:", ", ".join(sorted({r["region"] for r in rows})))
+    print("Measures:", ", ".join(sorted({r["measure"] for r in rows})))
 
 
 if __name__ == "__main__":
