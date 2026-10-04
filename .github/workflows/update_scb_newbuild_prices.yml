@@ -1,0 +1,47 @@
+name: Update SCB new-build prices
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Annual table; a monthly check is enough and also catches revisions.
+    - cron: "20 7 2 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch SCB data
+        run: python src/fetch_scb_newbuild_prices.py
+
+      - name: Build dashboard data
+        run: python src/build_dashboard_data.py
+
+      - name: Commit SCB and dashboard data
+        run: |
+          if [ -z "$(git status --porcelain -- data/scb docs/dashboard_data.json)" ]; then
+            echo "No SCB changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scb docs/dashboard_data.json
+          git commit -m "Update SCB new-build prices"
+          git push
