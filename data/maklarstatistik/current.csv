@@ -1,13 +1,13 @@
 ﻿snapshot_date,source_updated,kommun,bostadstyp,period,pris_per_m2,medelpris,antal_salda,prisutveckling_pct,prisutveckling_status,source_url
-2026-10-04,2026-09-08,Luleå,Bostadsrätter,3 månader,30610,1909000,220,6.1,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Luleå,Bostadsrätter,12 månader,28722,1908000,841,10.5,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Luleå,Villor,3 månader,30868,3726000,138,7.4,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Luleå,Villor,12 månader,28999,3625000,462,16.3,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Luleå,Fritidshus,3 månader,26454,1506000,35,,N,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Luleå,Fritidshus,12 månader,28992,1554000,60,-1.1,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
-2026-10-04,2026-09-08,Boden,Bostadsrätter,3 månader,16728,1132000,43,-2.5,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
-2026-10-04,2026-09-08,Boden,Bostadsrätter,12 månader,16931,1144000,142,6.5,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
-2026-10-04,2026-09-08,Boden,Villor,3 månader,18948,2253000,80,-1.7,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
-2026-10-04,2026-09-08,Boden,Villor,12 månader,18839,2279000,246,12.0,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
-2026-10-04,2026-09-08,Boden,Fritidshus,3 månader,14285,811000,5,,N,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
-2026-10-04,2026-09-08,Boden,Fritidshus,12 månader,16986,995000,15,,F,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Luleå,Bostadsrätter,3 månader,30181,1853000,225,3.9,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Luleå,Bostadsrätter,12 månader,28937,1929000,833,9.6,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Luleå,Villor,3 månader,32797,4093000,120,8.3,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Luleå,Villor,12 månader,29654,3729000,468,18.8,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Luleå,Fritidshus,3 månader,25738,1512000,29,,N,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Luleå,Fritidshus,12 månader,28208,1526000,63,-6.5,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/lulea/
+2026-10-10,2026-10-08,Boden,Bostadsrätter,3 månader,16413,1175000,40,-6.0,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Boden,Bostadsrätter,12 månader,16950,1142000,142,4.4,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Boden,Villor,3 månader,18962,2154000,81,8.5,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Boden,Villor,12 månader,19114,2281000,239,21.9,OK,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Boden,Fritidshus,3 månader,16273,852000,4,,N,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
+2026-10-10,2026-10-08,Boden,Fritidshus,12 månader,17012,975000,14,,F,https://www.maklarstatistik.se/omrade/riket/norrbottens-lan/boden/
