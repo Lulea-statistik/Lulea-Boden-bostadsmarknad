@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Uthyrning av småhus | Luleå–Boden bostadsmarknad</title>
   <link rel="icon" type="image/png" href="https://lulea-statistik.github.io/SMHI_Lulea-Kallax_weather-climate/favicon.png?v=3">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -51,6 +51,60 @@
       </table></div>
     </div>
 
+
+    <div class="chart-card full rental-overlap" id="rentalOverlap">
+      <h2>Överlappning mellan uthyrningswebbplatser</h2>
+      <p class="hint">Hur många av de dokumenterade småhusen förekommer på mer än en webbplats? Beräkningarna grundas på den granskade delmängd där varje annons har kopplats till ett unikt objekt, <strong>inte på samtliga 66 identifierade objekt</strong>.</p>
+      <div class="overlap-kpis" aria-label="Nyckeltal överlappning">
+        <div class="overlap-kpi"><span>Unika objekt med dokumenterade annonskopplingar</span><strong id="overlapUnique">–</strong></div>
+        <div class="overlap-kpi"><span>Registrerade annonser</span><strong id="overlapListings">–</strong></div>
+        <div class="overlap-kpi"><span>Objekt på endast en webbplats</span><strong id="overlapSingle">–</strong></div>
+        <div class="overlap-kpi"><span>Objekt på minst två webbplatser</span><strong id="overlapMulti">–</strong></div>
+      </div>
+      <p id="overlapCoverage" class="overlap-coverage" aria-live="polite"></p>
+    </div>
+
+    <div class="chart-card full rental-overlap">
+      <div class="overlap-tools">
+        <div>
+          <h2>Överlappningsmatris</h2>
+          <p class="hint">Varje ruta visar gemensamma unika objekt mellan två webbplatser. Diagonalen visar samtliga objekt på respektive webbplats.</p>
+        </div>
+        <div class="page-tools">
+          <label for="overlapMatrixMode">Visa mått
+            <select id="overlapMatrixMode">
+              <option value="count">Antal gemensamma objekt</option>
+              <option value="jaccard">Andel av unionen (%)</option>
+            </select>
+          </label>
+          <label for="overlapSiteFilter">Markera webbplats
+            <select id="overlapSiteFilter"><option value="">Alla webbplatser</option></select>
+          </label>
+        </div>
+      </div>
+      <div class="overlap-matrix-wrap" id="overlapMatrixWrap"></div>
+      <p class="hint">Andel beräknas som <strong>gemensamma objekt / samtliga unika objekt på minst en av de två webbplatserna</strong> (Jaccards likhetsmått). Andelen är symmetrisk och kan inte summeras över olika webbplatspar.</p>
+    </div>
+
+    <div class="chart-card full rental-overlap">
+      <h2>Nätverk – gemensamma objekt mellan webbplatser</h2>
+      <p class="hint">En linje visas när minst ett dokumenterat objekt förekommer på båda webbplatserna. Linjens tjocklek motsvarar antalet gemensamma objekt. Välj en webbplats ovan för att framhäva dess kopplingar.</p>
+      <div id="overlapNetwork" class="overlap-network" role="img" aria-label="Nätverk över webbplatser och gemensamma uthyrningsobjekt"></div>
+      <h3 class="overlap-subtitle">Webbplatspar med gemensamma objekt</h3>
+      <div class="table-scroll"><table class="overlap-pairs-table">
+        <thead><tr><th>Webbplats A</th><th>Webbplats B</th><th>Gemensamma objekt</th><th>Överlapp av union (%)</th></tr></thead>
+        <tbody id="overlapPairsBody"></tbody>
+      </table></div>
+    </div>
+
+    <div class="chart-card full rental-overlap">
+      <h2>Antal webbplatser per fysiskt objekt</h2>
+      <p class="hint">Varje objekt räknas en gång, oavsett om det annonserats flera gånger på samma webbplats.</p>
+      <div id="overlapDistribution" class="overlap-distribution" aria-label="Fördelning av antal webbplatser per objekt"></div>
+      <p class="hint">Denna delmängd är särskilt kartlagd för att hitta dubbletter och är därför inte representativ för hela uthyrningsmarknaden. Registrerad annons betyder inte att objektet är ledigt i dag. <strong>Egna webbplatser</strong> är en källkategori som kan omfatta olika uthyrares webbplatser, inte en gemensam plattform. Inga adresser, annons-ID eller enskilda objektgrupper publiceras.</p>
+      <div id="overlapError" class="empty-state" hidden role="alert"></div>
+    </div>
+
     <div class="chart-card full rental-method">
       <h2>Metod och datakvalitet</h2>
       <p><strong>Avgränsning.</strong> Bevakningen gäller offentligt annonserade villor, småhus, hus och stugor för uthyrning inom Luleå kommun. Lägenheter och enskilda rum ingår inte om annonserna inte avser ett helt hus eller en självständig uthyrningsenhet.</p>
@@ -64,6 +118,6 @@
   </section>
 </main>
 <footer><span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span><span>Uthyrningsdata: intern annonsbevakning, enbart aggregerade uppgifter.</span></footer>
-<script src="uthyrning_smahus.js?v=1"></script>
+<script src="uthyrning_smahus.js?v=2"></script>
 </body>
 </html>

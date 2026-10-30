@@ -77,3 +77,26 @@ Publicerat dataunderlag: `docs/villa_rental_aggregates.json`, senast dokumentera
 **Integritet:** Publicera inte `data/objects.csv`, `data/listings.csv`, annons-ID, detaljerade adresser eller andra interna uppgifter från den privata källan. Enbart de godkända aggregerade snapshotfälten kopieras manuellt till den offentliga JSON-filen; det finns ingen automatisk koppling från den publika webbplatsen till det privata repositoriet.
 
 **Metod:** Serien över identifierade objekt är hittills inte en jämförbar serie över aktiva/lediga småhus. Söktäckningen har förbättrats mellan kartläggningarna. Publicera därför inte ökningen som faktisk marknadstillväxt. Uppdatera metoddokumentationen om en stabil, jämförbar aktiv-serie etableras.
+
+## Överlappning mellan uthyrningswebbplatser
+
+Undersidan `docs/uthyrning_smahus.html` innehåller också ett aggregerat överlappningsavsnitt. Den offentliga datafilen `docs/villa_site_overlap.json` har skapats utifrån dokumenterade `object_id`–`source`-kopplingar i det privata projektets `data/listings.csv` (senast observerade annonser 2026-10-16).
+
+**Skilj på täckningsnivåerna (2026-10-16):**
+- 66 totalt identifierade uthyrningsobjekt i bevakningen,
+- 20 särskilt granskade objekt i objektmastern,
+- **10** objekt med dokumenterade annonskopplingar i `listings.csv`,
+- 24 registrerade annonsrader; 22 unika webbplats–objekt-kombinationer,
+- 9 av dessa 10 objekt förekommer på minst två olika webbplatser.
+
+De 10 objekten är en **selektivt dokumenterad delmängd**, inte ett slumpmässigt urval. **9/10 får inte presenteras som en andel för de 66 identifierade objekten eller för hela marknaden.**
+
+Den publika JSON-filen innehåller endast:
+- täckningstal och källans datum,
+- antal unika objekt respektive annonsrader per webbplats,
+- antal gemensamma unika objekt per webbplatspar,
+- fördelning efter antal olika webbplatser per objekt.
+
+Ingen publik objektlista, adress, annonsnyckel, anonymt objekt-ID eller per-objekt-dubblettmönster publiceras. Webbplatsparens procenttal är Jaccard: `gemensamma objekt / (objekt på A + objekt på B - gemensamma objekt)`.
+
+**Uppdatering:** Då ursprungsrepositoriet är privat måste en behörig aktör härleda och granska aggregeringen från dess aktuella `listings.csv` och därefter uppdatera `docs/villa_site_overlap.json` i detta publika repo. Ett automatiserat flöde från privat till publikt har **inte** aktiverats. Råa objekt- och annonsfiler ska aldrig kopieras hit. Observationerna visar dokumenterade annonser, inte säkert aktuella lediga objekt. Vid ny kartläggning ska täckning och jämförbarhet dokumenteras på nytt.
