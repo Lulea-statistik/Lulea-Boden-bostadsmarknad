@@ -1,0 +1,117 @@
+{
+  "scope": "Luleå kommun",
+  "snapshot_date": "2026-10-16",
+  "basis": "Dokumenterade länkar mellan annonser och unika fysiska objekt i den privata annonsfilens senaste version.",
+  "coverage": {
+    "identified_objects_in_surveillance": 66,
+    "reviewed_objects_in_master": 20,
+    "objects_with_listing_links": 10,
+    "recorded_listing_rows": 24,
+    "distinct_site_object_links": 22,
+    "unique_objects_multi_site": 9,
+    "unique_objects_single_site": 1
+  },
+  "sites": [
+    {
+      "name": "Airbnb",
+      "unique_objects": 4,
+      "recorded_listings": 4
+    },
+    {
+      "name": "Booking.com",
+      "unique_objects": 2,
+      "recorded_listings": 2
+    },
+    {
+      "name": "Bostadshub",
+      "unique_objects": 2,
+      "recorded_listings": 2
+    },
+    {
+      "name": "Bostadslistan",
+      "unique_objects": 4,
+      "recorded_listings": 4
+    },
+    {
+      "name": "Egen webbplats",
+      "unique_objects": 2,
+      "recorded_listings": 2
+    },
+    {
+      "name": "Hyrenbostad",
+      "unique_objects": 5,
+      "recorded_listings": 6
+    },
+    {
+      "name": "Qasa",
+      "unique_objects": 3,
+      "recorded_listings": 4
+    }
+  ],
+  "overlap_pairs": [
+    {
+      "site_a": "Airbnb",
+      "site_b": "Booking.com",
+      "shared_unique_objects": 2
+    },
+    {
+      "site_a": "Airbnb",
+      "site_b": "Egen webbplats",
+      "shared_unique_objects": 2
+    },
+    {
+      "site_a": "Bostadshub",
+      "site_b": "Bostadslistan",
+      "shared_unique_objects": 2
+    },
+    {
+      "site_a": "Bostadshub",
+      "site_b": "Hyrenbostad",
+      "shared_unique_objects": 1
+    },
+    {
+      "site_a": "Bostadshub",
+      "site_b": "Qasa",
+      "shared_unique_objects": 1
+    },
+    {
+      "site_a": "Bostadslistan",
+      "site_b": "Hyrenbostad",
+      "shared_unique_objects": 3
+    },
+    {
+      "site_a": "Bostadslistan",
+      "site_b": "Qasa",
+      "shared_unique_objects": 2
+    },
+    {
+      "site_a": "Hyrenbostad",
+      "site_b": "Qasa",
+      "shared_unique_objects": 3
+    }
+  ],
+  "site_count_distribution": [
+    {
+      "site_count": 1,
+      "object_count": 1
+    },
+    {
+      "site_count": 2,
+      "object_count": 7
+    },
+    {
+      "site_count": 3,
+      "object_count": 1
+    },
+    {
+      "site_count": 4,
+      "object_count": 1
+    }
+  ],
+  "limitations": [
+    "Bara objekt med dokumenterad annonskoppling ingår i överlappningsanalysen.",
+    "Antal annonser är registrerade annonsrader, inte säkert aktiva annonser vid ett visst datum.",
+    "Samma objekt kan ha flera annonser på samma webbplats; sådana annonser ökar inte antalet unika webbplats–objekt-kopplingar.",
+    "Resultaten är inte representativa för samtliga 66 identifierade objekt eller hela uthyrningsmarknaden."
+  ]
+}
