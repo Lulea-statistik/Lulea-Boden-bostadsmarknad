@@ -33,7 +33,7 @@
       "recorded_listings": 4
     },
     {
-      "name": "Egen webbplats",
+      "name": "Egna webbplatser",
       "unique_objects": 2,
       "recorded_listings": 2
     },
@@ -56,7 +56,7 @@
     },
     {
       "site_a": "Airbnb",
-      "site_b": "Egen webbplats",
+      "site_b": "Egna webbplatser",
       "shared_unique_objects": 2
     },
     {
@@ -113,5 +113,6 @@
     "Antal annonser är registrerade annonsrader, inte säkert aktiva annonser vid ett visst datum.",
     "Samma objekt kan ha flera annonser på samma webbplats; sådana annonser ökar inte antalet unika webbplats–objekt-kopplingar.",
     "Resultaten är inte representativa för samtliga 66 identifierade objekt eller hela uthyrningsmarknaden."
-  ]
+  ],
+  "site_category_note": "Egna webbplatser är en kategori för olika uthyrares egna webbplatser, inte en enskild gemensam tjänst."
 }
