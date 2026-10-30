@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Uthyrning av småhus | Luleå–Boden bostadsmarknad</title>
+  <link rel="icon" type="image/png" href="https://lulea-statistik.github.io/SMHI_Lulea-Kallax_weather-climate/favicon.png?v=3">
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Luleå–Boden bostadsmarknad</h1>
+    <p>Uthyrning av småhus – aggregerad annonsbevakning för Luleå kommun</p>
+  </div>
+  <div class="updated">Senaste dokumenterade kartläggning<br><strong id="rentalUpdated">–</strong></div>
+</header>
+<nav class="tabs" aria-label="Navigering">
+  <a class="tab-link" href="index.html">Tillbaka till bostadsmarknaden</a>
+  <span class="rental-tab-current" aria-current="page">Småhusuthyrning</span>
+</nav>
+<main>
+  <section id="rental-content" class="page active">
+    <div class="source-note"><strong>Avgränsning:</strong> Endast Luleå kommun; någon motsvarande sammanställning för Boden finns inte ännu. Uppgifterna visar <strong>identifierade unika uthyrningsenheter</strong> i bevakningen, inte ett säkerställt antal samtidigt lediga bostäder.</div>
+
+    <div class="metric-grid" aria-label="Sammanfattande nyckeltal">
+      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Identifierade unika objekt</h3><div class="rental-kpi" id="rentalTotal">–</div></article>
+      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Ordinarie uthyrning</h3><div class="rental-kpi" id="rentalOrdinary">–</div></article>
+      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Korttidsuthyrning</h3><div class="rental-kpi" id="rentalShort">–</div></article>
+      <article class="metric-card"><div class="period-title">Adresskvalitet</div><h3>Verifierad fullständig adress</h3><div class="rental-kpi" id="rentalFullAddress">–</div></article>
+    </div>
+
+    <div class="chart-card tall">
+      <h2>Identifierade objekt över tid</h2>
+      <p class="hint">Ackumulerat identifierade unika objekt per kartläggning. Ökning kan bero på förbättrad sökmetod, inte på nytt utbud.</p>
+      <canvas id="rentalTrend" aria-label="Tidsserie över identifierade objekt" role="img"></canvas>
+    </div>
+    <div class="chart-card tall">
+      <h2>Ordinarie uthyrning och korttidsuthyrning</h2>
+      <p class="hint">Uppdelningen finns från 9 oktober 2026. Saknade äldre uppgifter ersätts inte med nollor.</p>
+      <canvas id="rentalTypes" aria-label="Uthyrningskategorier per kartläggningsdatum" role="img"></canvas>
+    </div>
+
+    <div class="chart-card full">
+      <h2>Statistik per kartläggning</h2>
+      <p class="hint">Datumen är observationstillfällen, inte en jämförbar historik över faktiskt lediga objekt.</p>
+      <div class="table-scroll"><table>
+        <thead><tr><th>Datum</th><th>Identifierade objekt</th><th>Ordinarie</th><th>Korttid</th><th>Fullständig adress</th><th>Jämförbarhet</th></tr></thead>
+        <tbody id="rentalTableBody"></tbody>
+      </table></div>
+    </div>
+
+    <div class="chart-card full rental-method">
+      <h2>Metod och datakvalitet</h2>
+      <p><strong>Avgränsning.</strong> Bevakningen gäller offentligt annonserade villor, småhus, hus och stugor för uthyrning inom Luleå kommun. Lägenheter och enskilda rum ingår inte om annonserna inte avser ett helt hus eller en självständig uthyrningsenhet.</p>
+      <p><strong>Unika objekt och dubbletter.</strong> Samma fysiska uthyrningsenhet kan annonseras på flera plattformar, men ska bara räknas en gång. Sammanföring kräver starkt stöd i exempelvis adress, storlek, rum, hyra eller objektsnamn. Separata enheter på samma fastighet ska däremot inte slås ihop. Osäkra fall behöver fortsatt granskning.</p>
+      <p><strong>Tolkning.</strong> Metoden och söktäckningen har utvecklats under perioden, särskilt för korttidsannonser. Serien visar därför hittills antal <em>identifierade</em> objekt i bevakningen, inte en pålitlig förändring av utbudet. En jämförbar tidsserie över <em>unika aktiva objekt</em> kräver upprepade sökningar med samma metod och säker hantering av annonser som blivit inaktiva.</p>
+      <p><strong>Adresskvalitet.</strong> Verifierad fullständig adress är ett separat kvalitetsmått, inte ett mått på alla annonser med adressinformation. Airbnb-kartnålar används inte för att härleda husnummer.</p>
+      <p><strong>Granskning.</strong> Projektets objektmaster innehåller <span id="rentalReviewed">–</span> särskilt granskade objekt, vilket är en mindre delmängd av de identifierade. Den offentliga webbplatsen visar enbart aggregerad statistik – inte privat projektdata på annons- eller adressnivå.</p>
+      <p class="hint">Källa: intern sammanställning från projektet uthyrning_villa. Publicerad aggregerad data är en daterad ögonblicksbild och uppdateras inte automatiskt från det privata GitHub-repositoriet.</p>
+    </div>
+    <div id="rentalError" class="empty-state" hidden></div>
+  </section>
+</main>
+<footer><span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span><span>Uthyrningsdata: intern annonsbevakning, enbart aggregerade uppgifter.</span></footer>
+<script src="uthyrning_smahus.js?v=1"></script>
+</body>
+</html>
