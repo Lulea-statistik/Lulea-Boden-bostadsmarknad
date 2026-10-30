@@ -67,3 +67,13 @@ Indikatorerna omfattar:
 Workflowet `Build listing indicators` körs när `history.csv` ändras eller manuellt via GitHub Actions.
 
 Ingen annonskälla ska kopplas in innan vi har en källa där automatiserad datainsamling är uttryckligen tillåten, till exempel via API, feed, licens eller annat tydligt medgivande.
+
+## Uthyrning av småhus – aggregerad publicering
+
+En offentlig undersida, `docs/uthyrning_smahus.html`, visar enbart aggregerade uppgifter från det **privata** arbetsrepositoriet `Lulea-statistik/uthyrning_villa`. Undersidan länkas från huvudsidans navigering.
+
+Publicerat dataunderlag: `docs/villa_rental_aggregates.json`, senast dokumenterat 2026-10-16. Underlaget innehåller datum, antal identifierade unika objekt, antal med verifierad fullständig adress samt (när tillgängligt) uppdelning på ordinarie uthyrning och korttidsuthyrning.
+
+**Integritet:** Publicera inte `data/objects.csv`, `data/listings.csv`, annons-ID, detaljerade adresser eller andra interna uppgifter från den privata källan. Enbart de godkända aggregerade snapshotfälten kopieras manuellt till den offentliga JSON-filen; det finns ingen automatisk koppling från den publika webbplatsen till det privata repositoriet.
+
+**Metod:** Serien över identifierade objekt är hittills inte en jämförbar serie över aktiva/lediga småhus. Söktäckningen har förbättrats mellan kartläggningarna. Publicera därför inte ökningen som faktisk marknadstillväxt. Uppdatera metoddokumentationen om en stabil, jämförbar aktiv-serie etableras.
