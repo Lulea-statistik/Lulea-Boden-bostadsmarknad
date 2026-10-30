@@ -1,0 +1,40 @@
+{
+  "scope": "Luleå kommun",
+  "source": "Intern sammanställning från projektet uthyrning_villa (privat datakälla).",
+  "publication": "Endast aggregerad statistik. Inga objektsadresser eller annonser publiceras.",
+  "reviewed_objects_in_master": 20,
+  "snapshots": [
+    {
+      "snapshot": "2026-09-25",
+      "identified_unique_objects": 31,
+      "full_address_objects": 8,
+      "ordinary_rental_objects": null,
+      "short_term_objects": null,
+      "comparability_note": "Första kartläggningen; ofullständig täckning."
+    },
+    {
+      "snapshot": "2026-10-02",
+      "identified_unique_objects": 38,
+      "full_address_objects": 9,
+      "ordinary_rental_objects": null,
+      "short_term_objects": null,
+      "comparability_note": "Utökad sökning, särskilt för korttidsuthyrning; inte direkt jämförbar."
+    },
+    {
+      "snapshot": "2026-10-09",
+      "identified_unique_objects": 52,
+      "full_address_objects": 10,
+      "ordinary_rental_objects": 24,
+      "short_term_objects": 28,
+      "comparability_note": "Fler tidigare publicerade annonser hittades; inte ett mått på nya uthyrningar."
+    },
+    {
+      "snapshot": "2026-10-16",
+      "identified_unique_objects": 66,
+      "full_address_objects": 11,
+      "ordinary_rental_objects": 26,
+      "short_term_objects": 40,
+      "comparability_note": "Fler äldre korttidsannonser identifierades; inte ett jämförbart aktivt marknadsbestånd."
+    }
+  ]
+}
