@@ -22,15 +22,6 @@
 </nav>
 <main>
   <section id="rental-content" class="page active">
-    <div class="source-note"><strong>Avgränsning:</strong> Endast Luleå kommun; någon motsvarande sammanställning för Boden finns inte ännu. Uppgifterna visar <strong>identifierade unika uthyrningsenheter</strong> i bevakningen, inte ett säkerställt antal samtidigt lediga bostäder.</div>
-
-    <div class="metric-grid" aria-label="Sammanfattande nyckeltal">
-      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Identifierade unika objekt</h3><div class="rental-kpi" id="rentalTotal">–</div></article>
-      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Ordinarie uthyrning</h3><div class="rental-kpi" id="rentalOrdinary">–</div></article>
-      <article class="metric-card"><div class="period-title">Senaste kartläggning</div><h3>Korttidsuthyrning</h3><div class="rental-kpi" id="rentalShort">–</div></article>
-      <article class="metric-card"><div class="period-title">Adresskvalitet</div><h3>Verifierad fullständig adress</h3><div class="rental-kpi" id="rentalFullAddress">–</div></article>
-    </div>
-
     <div class="chart-card tall">
       <h2>Identifierade objekt över tid</h2>
       <p class="hint">Ackumulerat identifierade unika objekt per kartläggning. Ökning kan bero på förbättrad sökmetod, inte på nytt utbud.</p>
@@ -40,6 +31,17 @@
       <h2>Ordinarie uthyrning och korttidsuthyrning</h2>
       <p class="hint">Uppdelningen finns från 9 oktober 2026. Saknade äldre uppgifter ersätts inte med nollor.</p>
       <canvas id="rentalTypes" aria-label="Uthyrningskategorier per kartläggningsdatum" role="img"></canvas>
+    </div>
+
+    <div class="chart-card full rental-overlap">
+      <h2>Nätverk – gemensamma objekt mellan webbplatser</h2>
+      <p class="hint">En linje visas när minst ett dokumenterat objekt förekommer på båda webbplatserna. Linjens tjocklek motsvarar antalet gemensamma objekt. Välj en webbplats i överlappningsmatrisen längre ned på sidan för att framhäva dess kopplingar.</p>
+      <div id="overlapNetwork" class="overlap-network" role="img" aria-label="Nätverk över webbplatser och gemensamma uthyrningsobjekt"></div>
+      <h3 class="overlap-subtitle">Webbplatspar med gemensamma objekt</h3>
+      <div class="table-scroll"><table class="overlap-pairs-table">
+        <thead><tr><th>Webbplats A</th><th>Webbplats B</th><th>Gemensamma objekt</th><th>Överlapp av union (%)</th></tr></thead>
+        <tbody id="overlapPairsBody"></tbody>
+      </table></div>
     </div>
 
     <div class="chart-card full">
@@ -87,17 +89,6 @@
     </div>
 
     <div class="chart-card full rental-overlap">
-      <h2>Nätverk – gemensamma objekt mellan webbplatser</h2>
-      <p class="hint">En linje visas när minst ett dokumenterat objekt förekommer på båda webbplatserna. Linjens tjocklek motsvarar antalet gemensamma objekt. Välj en webbplats ovan för att framhäva dess kopplingar.</p>
-      <div id="overlapNetwork" class="overlap-network" role="img" aria-label="Nätverk över webbplatser och gemensamma uthyrningsobjekt"></div>
-      <h3 class="overlap-subtitle">Webbplatspar med gemensamma objekt</h3>
-      <div class="table-scroll"><table class="overlap-pairs-table">
-        <thead><tr><th>Webbplats A</th><th>Webbplats B</th><th>Gemensamma objekt</th><th>Överlapp av union (%)</th></tr></thead>
-        <tbody id="overlapPairsBody"></tbody>
-      </table></div>
-    </div>
-
-    <div class="chart-card full rental-overlap">
       <h2>Antal webbplatser per fysiskt objekt</h2>
       <p class="hint">Varje objekt räknas en gång, oavsett om det annonserats flera gånger på samma webbplats.</p>
       <div id="overlapDistribution" class="overlap-distribution" aria-label="Fördelning av antal webbplatser per objekt"></div>
@@ -118,6 +109,6 @@
   </section>
 </main>
 <footer><span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span><span>Uthyrningsdata: intern annonsbevakning, enbart aggregerade uppgifter.</span></footer>
-<script src="uthyrning_smahus.js?v=2"></script>
+<script src="uthyrning_smahus.js?v=3"></script>
 </body>
 </html>
