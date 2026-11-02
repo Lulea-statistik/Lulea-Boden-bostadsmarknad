@@ -28048,14 +28048,21 @@
       "measure": "Antal",
       "region": "Riket",
       "quarter": "2026K1",
-      "value": "1512",
+      "value": "1528",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Riket",
       "quarter": "2026K2",
-      "value": "2824",
+      "value": "2972",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Riket",
+      "quarter": "2026K3",
+      "value": "3786",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -28846,14 +28853,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Riket",
       "quarter": "2026K1",
-      "value": "2681",
+      "value": "2676",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Riket",
       "quarter": "2026K2",
-      "value": "2645",
+      "value": "2635",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Riket",
+      "quarter": "2026K3",
+      "value": "2559",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -29644,14 +29658,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Riket",
       "quarter": "2026K1",
-      "value": "1991",
+      "value": "1988",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Riket",
       "quarter": "2026K2",
-      "value": "1887",
+      "value": "1884",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Riket",
+      "quarter": "2026K3",
+      "value": "1808",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -30453,6 +30474,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Riket",
+      "quarter": "2026K3",
+      "value": "1.55",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Stor-Stockholm",
       "quarter": "1998K1",
@@ -31240,14 +31268,21 @@
       "measure": "Antal",
       "region": "Stor-Stockholm",
       "quarter": "2026K1",
-      "value": "164",
+      "value": "168",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Stor-Stockholm",
       "quarter": "2026K2",
-      "value": "366",
+      "value": "381",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Stor-Stockholm",
+      "quarter": "2026K3",
+      "value": "465",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -32045,7 +32080,14 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Stor-Stockholm",
       "quarter": "2026K2",
-      "value": "4179",
+      "value": "4188",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Stor-Stockholm",
+      "quarter": "2026K3",
+      "value": "4225",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -32836,14 +32878,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stor-Stockholm",
       "quarter": "2026K1",
-      "value": "3886",
+      "value": "3891",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stor-Stockholm",
       "quarter": "2026K2",
-      "value": "3162",
+      "value": "3178",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Stor-Stockholm",
+      "quarter": "2026K3",
+      "value": "3115",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -33645,6 +33694,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Stor-Stockholm",
+      "quarter": "2026K3",
+      "value": "1.38",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Stor-Göteborg",
       "quarter": "1998K1",
@@ -34432,14 +34488,21 @@
       "measure": "Antal",
       "region": "Stor-Göteborg",
       "quarter": "2026K1",
-      "value": "56",
+      "value": "57",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Stor-Göteborg",
       "quarter": "2026K2",
-      "value": "98",
+      "value": "108",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Stor-Göteborg",
+      "quarter": "2026K3",
+      "value": "126",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -35230,14 +35293,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Stor-Göteborg",
       "quarter": "2026K1",
-      "value": "4514",
+      "value": "4483",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Stor-Göteborg",
       "quarter": "2026K2",
-      "value": "4123",
+      "value": "4197",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Stor-Göteborg",
+      "quarter": "2026K3",
+      "value": "4664",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -36028,14 +36098,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stor-Göteborg",
       "quarter": "2026K1",
-      "value": "3581",
+      "value": "3566",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stor-Göteborg",
       "quarter": "2026K2",
-      "value": "3336",
+      "value": "3402",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Stor-Göteborg",
+      "quarter": "2026K3",
+      "value": "3599",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -36833,7 +36910,14 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Stor-Göteborg",
       "quarter": "2026K2",
-      "value": "1.28",
+      "value": "1.27",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Stor-Göteborg",
+      "quarter": "2026K3",
+      "value": "1.29",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -37635,6 +37719,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Antal",
+      "region": "Stor-Malmö",
+      "quarter": "2026K3",
+      "value": "93",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Stor-Malmö",
       "quarter": "1998K1",
@@ -38430,6 +38521,13 @@
       "region": "Stor-Malmö",
       "quarter": "2026K2",
       "value": "4696",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Stor-Malmö",
+      "quarter": "2026K3",
+      "value": "4989",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -39231,6 +39329,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Stor-Malmö",
+      "quarter": "2026K3",
+      "value": "3823",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Köpeskillingskoefficient",
       "region": "Stor-Malmö",
       "quarter": "1998K1",
@@ -40029,6 +40134,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Stor-Malmö",
+      "quarter": "2026K3",
+      "value": "1.4",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Stockholms län",
       "quarter": "1998K1",
@@ -40816,14 +40928,21 @@
       "measure": "Antal",
       "region": "Stockholms län",
       "quarter": "2026K1",
-      "value": "164",
+      "value": "168",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Stockholms län",
       "quarter": "2026K2",
-      "value": "366",
+      "value": "381",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Stockholms län",
+      "quarter": "2026K3",
+      "value": "465",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -41621,7 +41740,14 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Stockholms län",
       "quarter": "2026K2",
-      "value": "4179",
+      "value": "4188",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Stockholms län",
+      "quarter": "2026K3",
+      "value": "4225",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -42412,14 +42538,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stockholms län",
       "quarter": "2026K1",
-      "value": "3886",
+      "value": "3891",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Stockholms län",
       "quarter": "2026K2",
-      "value": "3162",
+      "value": "3178",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Stockholms län",
+      "quarter": "2026K3",
+      "value": "3115",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -43221,6 +43354,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Stockholms län",
+      "quarter": "2026K3",
+      "value": "1.38",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Östra mellansverige",
       "quarter": "1998K1",
@@ -44015,7 +44155,14 @@
       "measure": "Antal",
       "region": "Östra mellansverige",
       "quarter": "2026K2",
-      "value": "508",
+      "value": "524",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Östra mellansverige",
+      "quarter": "2026K3",
+      "value": "700",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -44813,7 +44960,14 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Östra mellansverige",
       "quarter": "2026K2",
-      "value": "2154",
+      "value": "2167",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Östra mellansverige",
+      "quarter": "2026K3",
+      "value": "2214",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -45611,7 +45765,14 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Östra mellansverige",
       "quarter": "2026K2",
-      "value": "1517",
+      "value": "1526",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Östra mellansverige",
+      "quarter": "2026K3",
+      "value": "1629",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -46413,6 +46574,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Östra mellansverige",
+      "quarter": "2026K3",
+      "value": "1.45",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Småland med öarna",
       "quarter": "1998K1",
@@ -47200,14 +47368,21 @@
       "measure": "Antal",
       "region": "Småland med öarna",
       "quarter": "2026K1",
-      "value": "186",
+      "value": "189",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Småland med öarna",
       "quarter": "2026K2",
-      "value": "325",
+      "value": "340",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Småland med öarna",
+      "quarter": "2026K3",
+      "value": "425",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -47998,14 +48173,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Småland med öarna",
       "quarter": "2026K1",
-      "value": "1867",
+      "value": "1854",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Småland med öarna",
       "quarter": "2026K2",
-      "value": "2048",
+      "value": "2046",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Småland med öarna",
+      "quarter": "2026K3",
+      "value": "2221",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -48796,14 +48978,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Småland med öarna",
       "quarter": "2026K1",
-      "value": "1383",
+      "value": "1368",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Småland med öarna",
       "quarter": "2026K2",
-      "value": "1413",
+      "value": "1406",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Småland med öarna",
+      "quarter": "2026K3",
+      "value": "1496",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -49594,14 +49783,21 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Småland med öarna",
       "quarter": "2026K1",
-      "value": "1.52",
+      "value": "1.53",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskillingskoefficient",
       "region": "Småland med öarna",
       "quarter": "2026K2",
-      "value": "1.61",
+      "value": "1.62",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Småland med öarna",
+      "quarter": "2026K3",
+      "value": "1.62",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -50392,14 +50588,21 @@
       "measure": "Antal",
       "region": "Sydsverige",
       "quarter": "2026K1",
-      "value": "210",
+      "value": "211",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Sydsverige",
       "quarter": "2026K2",
-      "value": "379",
+      "value": "396",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Sydsverige",
+      "quarter": "2026K3",
+      "value": "443",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -51190,14 +51393,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Sydsverige",
       "quarter": "2026K1",
-      "value": "3517",
+      "value": "3512",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Sydsverige",
       "quarter": "2026K2",
-      "value": "3486",
+      "value": "3420",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Sydsverige",
+      "quarter": "2026K3",
+      "value": "3302",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -51988,14 +52198,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Sydsverige",
       "quarter": "2026K1",
-      "value": "2477",
+      "value": "2474",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Sydsverige",
       "quarter": "2026K2",
-      "value": "2411",
+      "value": "2370",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Sydsverige",
+      "quarter": "2026K3",
+      "value": "2324",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -52797,6 +53014,13 @@
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Sydsverige",
+      "quarter": "2026K3",
+      "value": "1.53",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
       "measure": "Antal",
       "region": "Västsverige",
       "quarter": "1998K1",
@@ -53584,14 +53808,21 @@
       "measure": "Antal",
       "region": "Västsverige",
       "quarter": "2026K1",
-      "value": "240",
+      "value": "242",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Västsverige",
       "quarter": "2026K2",
-      "value": "496",
+      "value": "527",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Västsverige",
+      "quarter": "2026K3",
+      "value": "616",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -54382,14 +54613,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Västsverige",
       "quarter": "2026K1",
-      "value": "3080",
+      "value": "3069",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Västsverige",
       "quarter": "2026K2",
-      "value": "3020",
+      "value": "3073",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Västsverige",
+      "quarter": "2026K3",
+      "value": "3118",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -55180,14 +55418,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Västsverige",
       "quarter": "2026K1",
-      "value": "2261",
+      "value": "2256",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Västsverige",
       "quarter": "2026K2",
-      "value": "2146",
+      "value": "2201",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Västsverige",
+      "quarter": "2026K3",
+      "value": "2188",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -55985,6 +56230,13 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Västsverige",
       "quarter": "2026K2",
+      "value": "1.5",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Västsverige",
+      "quarter": "2026K3",
       "value": "1.51",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
@@ -56776,14 +57028,21 @@
       "measure": "Antal",
       "region": "Norra mellansverige",
       "quarter": "2026K1",
-      "value": "219",
+      "value": "223",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Norra mellansverige",
       "quarter": "2026K2",
-      "value": "355",
+      "value": "376",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Norra mellansverige",
+      "quarter": "2026K3",
+      "value": "568",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -57574,14 +57833,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Norra mellansverige",
       "quarter": "2026K1",
-      "value": "1951",
+      "value": "1931",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Norra mellansverige",
       "quarter": "2026K2",
-      "value": "1763",
+      "value": "1738",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Norra mellansverige",
+      "quarter": "2026K3",
+      "value": "1663",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -58372,14 +58638,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Norra mellansverige",
       "quarter": "2026K1",
-      "value": "1406",
+      "value": "1393",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Norra mellansverige",
       "quarter": "2026K2",
-      "value": "1235",
+      "value": "1219",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Norra mellansverige",
+      "quarter": "2026K3",
+      "value": "1131",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -59170,14 +59443,21 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Norra mellansverige",
       "quarter": "2026K1",
-      "value": "1.51",
+      "value": "1.52",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskillingskoefficient",
       "region": "Norra mellansverige",
       "quarter": "2026K2",
-      "value": "1.57",
+      "value": "1.58",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Norra mellansverige",
+      "quarter": "2026K3",
+      "value": "1.65",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -59968,14 +60248,21 @@
       "measure": "Antal",
       "region": "Mellersta Norrland",
       "quarter": "2026K1",
-      "value": "137",
+      "value": "138",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Mellersta Norrland",
       "quarter": "2026K2",
-      "value": "206",
+      "value": "222",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Mellersta Norrland",
+      "quarter": "2026K3",
+      "value": "253",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -60766,14 +61053,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Mellersta Norrland",
       "quarter": "2026K1",
-      "value": "2275",
+      "value": "2263",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Mellersta Norrland",
       "quarter": "2026K2",
-      "value": "2093",
+      "value": "2028",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Mellersta Norrland",
+      "quarter": "2026K3",
+      "value": "1554",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -61564,14 +61858,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Mellersta Norrland",
       "quarter": "2026K1",
-      "value": "1663",
+      "value": "1653",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Mellersta Norrland",
       "quarter": "2026K2",
-      "value": "1497",
+      "value": "1457",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Mellersta Norrland",
+      "quarter": "2026K3",
+      "value": "1023",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -62369,7 +62670,14 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Mellersta Norrland",
       "quarter": "2026K2",
-      "value": "1.55",
+      "value": "1.54",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Mellersta Norrland",
+      "quarter": "2026K3",
+      "value": "1.73",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -63160,14 +63468,21 @@
       "measure": "Antal",
       "region": "Övre Norrland",
       "quarter": "2026K1",
-      "value": "102",
+      "value": "103",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Antal",
       "region": "Övre Norrland",
       "quarter": "2026K2",
-      "value": "189",
+      "value": "206",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Antal",
+      "region": "Övre Norrland",
+      "quarter": "2026K3",
+      "value": "316",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -63958,14 +64273,21 @@
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Övre Norrland",
       "quarter": "2026K1",
-      "value": "1562",
+      "value": "1578",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskilling, medelvärde i tkr",
       "region": "Övre Norrland",
       "quarter": "2026K2",
-      "value": "1607",
+      "value": "1584",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskilling, medelvärde i tkr",
+      "region": "Övre Norrland",
+      "quarter": "2026K3",
+      "value": "1613",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -64756,14 +65078,21 @@
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Övre Norrland",
       "quarter": "2026K1",
-      "value": "1109",
+      "value": "1114",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
       "region": "Övre Norrland",
       "quarter": "2026K2",
-      "value": "1146",
+      "value": "1122",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Bas-/taxeringsvärde, medelvärde i tkr",
+      "region": "Övre Norrland",
+      "quarter": "2026K3",
+      "value": "1078",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
@@ -65554,14 +65883,21 @@
       "measure": "Köpeskillingskoefficient",
       "region": "Övre Norrland",
       "quarter": "2026K1",
-      "value": "1.62",
+      "value": "1.63",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     },
     {
       "measure": "Köpeskillingskoefficient",
       "region": "Övre Norrland",
       "quarter": "2026K2",
-      "value": "1.6",
+      "value": "1.63",
+      "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
+    },
+    {
+      "measure": "Köpeskillingskoefficient",
+      "region": "Övre Norrland",
+      "quarter": "2026K3",
+      "value": "1.69",
       "source_url": "https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__BO__BO0501__BO0501B/FastprisFHRegKv/"
     }
   ]
