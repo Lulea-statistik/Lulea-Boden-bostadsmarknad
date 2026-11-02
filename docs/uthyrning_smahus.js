@@ -32,10 +32,6 @@ function renderRental(data) {
   const last = rows[rows.length-1];
 
   byId("rentalUpdated").textContent = dateText(last.snapshot);
-  byId("rentalTotal").textContent = numberText(last.identified_unique_objects);
-  byId("rentalOrdinary").textContent = numberText(last.ordinary_rental_objects);
-  byId("rentalShort").textContent = numberText(last.short_term_objects);
-  byId("rentalFullAddress").textContent = numberText(last.full_address_objects);
   byId("rentalReviewed").textContent = numberText(data.reviewed_objects_in_master);
   populateRentalTable(rows);
 
