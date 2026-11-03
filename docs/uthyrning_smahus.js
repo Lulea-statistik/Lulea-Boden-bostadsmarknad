@@ -32,7 +32,7 @@ function renderRental(data) {
   const last = rows[rows.length-1];
 
   byId("rentalUpdated").textContent = dateText(last.snapshot);
-  byId("rentalReviewed").textContent = numberText(data.reviewed_objects_in_master);
+  byId("rentalReviewed").textContent = numberText(data.master_groups_registered ?? data.reviewed_objects_in_master);
   populateRentalTable(rows);
 
   if (typeof Chart === "undefined") throw new Error("Diagramfunktionen kunde inte laddas. Tabellen ovan visar fortfarande uppgifterna.");
@@ -238,11 +238,13 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
     byId("overlapSingle").textContent=fmt(data.coverage.unique_objects_single_site);
     byId("overlapMulti").textContent=fmt(data.coverage.unique_objects_multi_site);
     byId("overlapCoverage").textContent=
-      "Täckning: "+fmt(data.coverage.objects_with_listing_links)+" objekt med annonskopplingar av "+
-      fmt(data.coverage.reviewed_objects_in_master)+" särskilt granskade objekt och "+
-      fmt(data.coverage.identified_objects_in_surveillance)+" identifierade i bevakningen (senaste sammanställning "+data.snapshot_date+"). "+
-      fmt(data.coverage.recorded_listing_rows)+" registrerade annonser ger "+
-      fmt(data.coverage.distinct_site_object_links)+" unika kombinationer av webbplats och objekt.";
+      "Historiskt överlappningsunderlag (16 okt 2026): "+fmt(data.coverage.objects_with_listing_links)+" grupper med annonskopplingar av "+
+      fmt(data.coverage.reviewed_objects_in_master)+" mastergrupper i den ursprungliga analysen. "+
+      fmt(data.coverage.recorded_listing_rows)+" ursprungliga annonsrader ger "+
+      fmt(data.coverage.distinct_site_object_links)+" kombinationer av webbplats och mastergrupp. "+
+      "Privat register har senare "+fmt(data.latest_private_register_master_groups)+" mastergrupper och "+
+      fmt(data.latest_private_register_listing_rows)+" annonsrader (uppdaterat "+dateText(data.latest_private_register_status_date)+
+      "). Nätverk, matris och parvärden är INTE omräknade för det nyare registret.";
     const select=byId("overlapSiteFilter");
     for(const s of data.sites){const opt=E("option","",s.name);opt.value=s.name;select.append(opt);}
     byId("overlapMatrixMode").addEventListener("change",refresh);
