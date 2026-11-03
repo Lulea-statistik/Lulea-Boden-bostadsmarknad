@@ -38,12 +38,19 @@
     }
   ],
   "master_groups_registered": 48,
-  "registered_listing_rows": 69,
+  "registered_listing_rows": 70,
   "register_status_date": "2026-11-03",
   "reported_historical_snapshot_date": "2026-10-16",
   "original_october_item_export_found_in_checked_sources": false,
   "comparison_limitations": "48 reconstructed master groups and 69 listing rows are current private register coverage, not a fresh market snapshot and not a verified subset of exactly 66 unique physical houses. Oct16 historical 66 remains unchanged.",
   "unique_verified_physical_buildings": null,
   "independently_bookable_units": null,
-  "simultaneously_active_rental_units": null
+  "simultaneously_active_rental_units": null,
+  "uncollected_snapshot_dates": [
+    "2026-10-23",
+    "2026-10-30"
+  ],
+  "uncollected_reason": "Historiska kartläggningar 25 sep–16 okt hade ingen automatisk fortsatt källinsamling. Den befintliga schemalagda veckojobben 25 okt och 1 nov kördes, men current.csv var tom och nya snapshots skapades inte.",
+  "recent_collection_verified": false,
+  "active_unique_houses_verified": null
 }
