@@ -56,7 +56,7 @@
 
     <div class="chart-card full rental-overlap" id="rentalOverlap">
       <h2>Överlappning mellan uthyrningswebbplatser</h2>
-      <p class="hint">Hur många av de dokumenterade småhusen förekommer på mer än en webbplats? Beräkningarna grundas på den granskade delmängd där varje annons har kopplats till ett unikt objekt, <strong>inte på samtliga 66 identifierade objekt</strong>.</p>
+      <p class="hint">Historisk överlappning enligt den första registerversionen från 16 oktober 2026: 10 källkopplade mastergrupper av 20 masterposter. <strong>Matrisen och nätverket är inte uppdaterade för dagens större register med 48 mastergrupper.</strong> Kopplingar mellan annonser och mastergrupper är inte liktydiga med verifierade unika fysiska byggnader.</p>
       <div class="overlap-kpis" aria-label="Nyckeltal överlappning">
         <div class="overlap-kpi"><span>Unika objekt med dokumenterade annonskopplingar</span><strong id="overlapUnique">–</strong></div>
         <div class="overlap-kpi"><span>Registrerade annonser</span><strong id="overlapListings">–</strong></div>
@@ -92,7 +92,7 @@
       <h2>Antal webbplatser per fysiskt objekt</h2>
       <p class="hint">Varje objekt räknas en gång, oavsett om det annonserats flera gånger på samma webbplats.</p>
       <div id="overlapDistribution" class="overlap-distribution" aria-label="Fördelning av antal webbplatser per objekt"></div>
-      <p class="hint">Denna delmängd är särskilt kartlagd för att hitta dubbletter och är därför inte representativ för hela uthyrningsmarknaden. Registrerad annons betyder inte att objektet är ledigt i dag. <strong>Egna webbplatser</strong> är en källkategori som kan omfatta olika uthyrares webbplatser, inte en gemensam plattform. Inga adresser, annons-ID eller enskilda objektgrupper publiceras.</p>
+      <p class="hint">Detta är den ursprungliga, mindre delmängden och resultaten ska inte presenteras som en aktuell överlappning för de 48 mastergrupperna. Registrerad annons betyder inte att objektet är ledigt i dag. <strong>Egna webbplatser</strong> är en källkategori som kan omfatta olika uthyrares webbplatser, inte en gemensam plattform. Inga adresser, annons-ID eller enskilda objektgrupper publiceras.</p>
       <div id="overlapError" class="empty-state" hidden role="alert"></div>
     </div>
 
@@ -102,7 +102,7 @@
       <p><strong>Unika objekt och dubbletter.</strong> Samma fysiska uthyrningsenhet kan annonseras på flera plattformar, men ska bara räknas en gång. Sammanföring kräver starkt stöd i exempelvis adress, storlek, rum, hyra eller objektsnamn. Separata enheter på samma fastighet ska däremot inte slås ihop. Osäkra fall behöver fortsatt granskning.</p>
       <p><strong>Tolkning.</strong> Metoden och söktäckningen har utvecklats under perioden, särskilt för korttidsannonser. Serien visar därför hittills antal <em>identifierade</em> objekt i bevakningen, inte en pålitlig förändring av utbudet. En jämförbar tidsserie över <em>unika aktiva objekt</em> kräver upprepade sökningar med samma metod och säker hantering av annonser som blivit inaktiva.</p>
       <p><strong>Adresskvalitet.</strong> Verifierad fullständig adress är ett separat kvalitetsmått, inte ett mått på alla annonser med adressinformation. Airbnb-kartnålar används inte för att härleda husnummer.</p>
-      <p><strong>Granskning.</strong> Projektets objektmaster innehåller <span id="rentalReviewed">–</span> särskilt granskade objekt, vilket är en mindre delmängd av de identifierade. Den offentliga webbplatsen visar enbart aggregerad statistik – inte privat projektdata på annons- eller adressnivå.</p>
+      <p><strong>Registerstatus.</strong> Det privata projektet innehåller <span id="rentalReviewed">–</span> dokumenterade <em>mastergrupper</em> (registerstatus 3 november 2026), inte verifierade unika fysiska småhus. Den historiska totalsiffran 66 den 16 oktober är aggregerad och ingen komplett objektvis råexport har hittats i de granskade källorna. För antal självständigt bokningsbara enheter och samtidigt aktiva hus saknas jämförbart underlag. Den offentliga webbplatsen visar enbart aggregerad statistik – inga privata adresser eller annons-ID:n.</p>
       <p class="hint">Källa: intern sammanställning från projektet uthyrning_villa. Publicerad aggregerad data är en daterad ögonblicksbild och uppdateras inte automatiskt från det privata GitHub-repositoriet.</p>
     </div>
     <div id="rentalError" class="empty-state" hidden></div>
