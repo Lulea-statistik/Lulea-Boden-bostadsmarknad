@@ -33,10 +33,17 @@ function renderRental(data) {
 
   byId("rentalUpdated").textContent = dateText(last.snapshot);
   byId("rentalReviewed").textContent = numberText(data.master_groups_registered ?? data.reviewed_objects_in_master);
-  populateRentalTable(rows);
+  // Förenlig tidsaxel: visa missade kartläggningar som saknade observationer,
+  // aldrig som noll eller en upprepad tidigare nivå.
+  const missing=(data.uncollected_snapshot_dates || []).filter(d=>!rows.some(r=>r.snapshot===d))
+    .map(snapshot=>({snapshot,identified_unique_objects:null,ordinary_rental_objects:null,
+      short_term_objects:null,full_address_objects:null,
+      comparability_note:"Ej insamlat – automatisk annonskälla saknades; veckojobbet kördes med tom indata."}));
+  const displayRows=[...rows,...missing].sort((a,b)=>a.snapshot.localeCompare(b.snapshot));
+  populateRentalTable(displayRows);
 
   if (typeof Chart === "undefined") throw new Error("Diagramfunktionen kunde inte laddas. Tabellen ovan visar fortfarande uppgifterna.");
-  const labels = rows.map(row => dateText(row.snapshot));
+  const labels = displayRows.map(row => dateText(row.snapshot));
   const chartOptions = {
     responsive: true, maintainAspectRatio: false,
     interaction: {mode:"index", intersect:false},
@@ -48,8 +55,8 @@ function renderRental(data) {
     data: {
       labels,
       datasets: [
-        {label:"Identifierade unika objekt",data:rows.map(r=>r.identified_unique_objects),borderColor:"#00528c",backgroundColor:"#00528c",borderWidth:3,tension:0.16},
-        {label:"Fullständig adress",data:rows.map(r=>r.full_address_objects),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",borderWidth:2,tension:0.16}
+        {label:"Identifierade unika objekt",data:displayRows.map(r=>r.identified_unique_objects),borderColor:"#00528c",backgroundColor:"#00528c",borderWidth:3,tension:0.16},
+        {label:"Fullständig adress",data:displayRows.map(r=>r.full_address_objects),borderColor:"#2e8bb7",backgroundColor:"#2e8bb7",borderWidth:2,tension:0.16}
       ]
     },
     options: chartOptions
@@ -69,7 +76,7 @@ function renderRental(data) {
   });
 }
 
-fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
+fetch("villa_rental_aggregates.json?v=2", {cache:"no-store"})
   .then(response => {if(!response.ok) throw new Error("Kunde inte hämta sammanställningen."); return response.json();})
   .then(renderRental)
   .catch(error => {
@@ -229,7 +236,7 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
   function refresh() {matrix();network();}
 
   async function load() {
-    const response=await fetch("villa_site_overlap.json?v=1",{cache:"no-store"});
+    const response=await fetch("villa_site_overlap.json?v=2",{cache:"no-store"});
     if(!response.ok)throw new Error("Kunde inte läsa data för webbplatsöverlappning.");
     const data=await response.json();
     validate(data);OVERLAP=data;
@@ -238,13 +245,17 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
     byId("overlapSingle").textContent=fmt(data.coverage.unique_objects_single_site);
     byId("overlapMulti").textContent=fmt(data.coverage.unique_objects_multi_site);
     byId("overlapCoverage").textContent=
-      "Historiskt överlappningsunderlag (16 okt 2026): "+fmt(data.coverage.objects_with_listing_links)+" grupper med annonskopplingar av "+
-      fmt(data.coverage.reviewed_objects_in_master)+" mastergrupper i den ursprungliga analysen. "+
-      fmt(data.coverage.recorded_listing_rows)+" ursprungliga annonsrader ger "+
-      fmt(data.coverage.distinct_site_object_links)+" kombinationer av webbplats och mastergrupp. "+
-      "Privat register har senare "+fmt(data.latest_private_register_master_groups)+" mastergrupper och "+
-      fmt(data.latest_private_register_listing_rows)+" annonsrader (uppdaterat "+dateText(data.latest_private_register_status_date)+
-      "). Nätverk, matris och parvärden är INTE omräknade för det nyare registret.";
+      "Omräknat källnätverk ("+dateText(data.latest_private_register_status_date)+"): "+
+      fmt(data.coverage.objects_with_listing_links)+" mastergrupper med dokumenterade annonskopplingar, "+
+      fmt(data.coverage.recorded_listing_rows)+" registrerade annonsrader och "+
+      fmt(data.coverage.distinct_site_object_links)+" unika webbplats–mastergrupp-kombinationer. "+
+      fmt(data.coverage.master_groups_probable)+" mastergrupper har preliminär identitet. "+
+      "Kopplingarna visar inte att objekten annonserades samtidigt eller är lediga nu.";
+    const pending=byId("overlapPendingSources");
+    if(pending) pending.textContent=(data.pending_sources||[]).length ?
+      "Ännu inte godkända källkopplingar: "+data.pending_sources.map(s=>s.name+" ("+fmt(s.candidate_advertisements)+" kandidatannonser)").join(", ")+
+      ". Dessa visas inte som påhittade länkar i nätverket." :
+      "Inga ytterligare källkandidater väntar på granskning.";
     const select=byId("overlapSiteFilter");
     for(const s of data.sites){const opt=E("option","",s.name);opt.value=s.name;select.append(opt);}
     byId("overlapMatrixMode").addEventListener("change",refresh);
