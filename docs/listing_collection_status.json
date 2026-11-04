@@ -1,0 +1,14 @@
+{
+  "run_utc_date": "2026-11-01",
+  "run_utc_timestamp": "2026-11-01T13:41:12Z",
+  "github_run_id": "41312453924",
+  "result": "no_source_data",
+  "current_input_rows": 0,
+  "snapshot_created": false,
+  "archived_today_rows": 0,
+  "cadence": "söndagar 06:30 UTC fram till denna ändring; därefter fredagar 06:30 UTC",
+  "input_path": "data/listings/current.csv",
+  "automated_external_listing_collection_configured": false,
+  "date_of_last_manually_reported_rental_aggregate": "2026-10-16",
+  "interpretation": "Verifierat mot GitHub Actions 2026-11-01: No listing rows in current.csv; no snapshot created. Tekniskt lyckad körning men ingen ny annonsobservation."
+}
