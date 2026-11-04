@@ -151,8 +151,8 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
         if (selected && siteA.name!==selected && siteB.name!==selected) td.classList.add("overlap-muted");
         if (!diagonal && n>0) td.style.setProperty("--cell-strength", String(0.08 + 0.36*percent));
         td.title = diagonal
-          ? siteA.name + ": " + fmt(n) + " dokumenterade unika objekt"
-          : siteA.name + " + " + siteB.name + ": " + fmt(n) + " gemensamma objekt; " + pct(percent) + " av unionen ("+fmt(union(siteA.name,siteB.name))+" objekt)";
+          ? siteA.name + ": " + fmt(n) + " dokumenterade mastergrupper"
+          : siteA.name + " + " + siteB.name + ": " + fmt(n) + " gemensamma mastergrupper; " + pct(percent) + " av unionen ("+fmt(union(siteA.name,siteB.name))+" objekt)";
         tr.append(td);
       }
       tbody.append(tr);
@@ -190,9 +190,9 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
   function network() {
     const host=byId("overlapNetwork");host.replaceChildren();
     const sites=OVERLAP.sites, selected=byId("overlapSiteFilter").value;
-    const svg=S("svg",{viewBox:"0 0 1020 510",role:"img","aria-label":"Nätverk över dokumenterade objekt som delas mellan webbplatser"});
-    const title=S("title");title.textContent="Webbplatsöverlapppning – kantens tjocklek visar gemensamma objekt";svg.append(title);
-    const positions=new Map(),cx=510,cy=252,rx=346,ry=174;
+    const svg=S("svg",{viewBox:"0 0 1120 550",role:"img","aria-label":"Nätverk över dokumenterade objekt som delas mellan webbplatser"});
+    const title=S("title");title.textContent="Webbplatsöverlapppning – kantens tjocklek visar gemensamma mastergrupper";svg.append(title);
+    const positions=new Map(),cx=560,cy=272,rx=390,ry=190;
     sites.forEach((site,i)=>{
       const angle=(-Math.PI/2)+2*Math.PI*i/sites.length;
       positions.set(site.name,{x:cx+rx*Math.cos(angle),y:cy+ry*Math.sin(angle)});
@@ -204,7 +204,7 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
       const line=S("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:active?"#2e8bb7":"#aab5c4",
         "stroke-width":(1.7+5*pair.shared_unique_objects/maxOverlap).toFixed(2),
         "stroke-linecap":"round",opacity:active?0.71:0.11});
-      const tip=S("title");tip.textContent=pair.site_a+" / "+pair.site_b+": "+pair.shared_unique_objects+" gemensamma objekt ("+pct(jaccard(pair.site_a,pair.site_b))+")";line.append(tip);svg.append(line);
+      const tip=S("title");tip.textContent=pair.site_a+" / "+pair.site_b+": "+pair.shared_unique_objects+" gemensamma mastergrupper ("+pct(jaccard(pair.site_a,pair.site_b))+")";line.append(tip);svg.append(line);
     }
     sites.forEach(site=>{
       const p=positions.get(site.name);
@@ -216,7 +216,7 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
       count.textContent=String(site.unique_objects);
       const lab=S("text",{x:p.x,y:p.y+(p.y<cy?-43:51),"text-anchor":"middle","font-size":"14","font-weight":"600",fill:"#233449"});
       lab.textContent=site.name;
-      const tip=S("title");tip.textContent=site.name+": "+site.unique_objects+" unika objekt; "+site.recorded_listings+" registrerade annonser";
+      const tip=S("title");tip.textContent=site.name+": "+site.unique_objects+" mastergrupper; "+site.recorded_listings+" registrerade annonser";
       group.append(circle,count,lab,tip);
       const choose=()=>{byId("overlapSiteFilter").value=selected===site.name?"":site.name;refresh();};
       group.addEventListener("click",choose);
@@ -237,14 +237,14 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
     byId("overlapListings").textContent=fmt(data.coverage.recorded_listing_rows);
     byId("overlapSingle").textContent=fmt(data.coverage.unique_objects_single_site);
     byId("overlapMulti").textContent=fmt(data.coverage.unique_objects_multi_site);
-    byId("overlapCoverage").textContent=
-      "Historiskt överlappningsunderlag (16 okt 2026): "+fmt(data.coverage.objects_with_listing_links)+" grupper med annonskopplingar av "+
-      fmt(data.coverage.reviewed_objects_in_master)+" mastergrupper i den ursprungliga analysen. "+
-      fmt(data.coverage.recorded_listing_rows)+" ursprungliga annonsrader ger "+
-      fmt(data.coverage.distinct_site_object_links)+" kombinationer av webbplats och mastergrupp. "+
-      "Privat register har senare "+fmt(data.latest_private_register_master_groups)+" mastergrupper och "+
-      fmt(data.latest_private_register_listing_rows)+" annonsrader (uppdaterat "+dateText(data.latest_private_register_status_date)+
-      "). Nätverk, matris och parvärden är INTE omräknade för det nyare registret.";
+    byId("overlapCoverage").textContent =
+      "Källregister "+dateText(data.latest_private_register_status_date)+": "+
+      fmt(data.coverage.reviewed_objects_in_master)+" mastergrupper och "+
+      fmt(data.coverage.recorded_listing_rows)+" annonsrader, varav "+
+      fmt(data.coverage.source_page_only_without_historical_activity)+" enbart källsideträffar utan känd annonsaktivitet. "+
+      fmt(data.coverage.distinct_site_object_links)+" dokumenterade webbplats–masterkopplingar och "+
+      fmt(data.coverage.unique_objects_multi_site)+" grupper på flera webbplatser. "+
+      "Det är inte ett mått på samtidigt aktiva uthyrningar eller verifierat unika fysiska byggnader.";
     const select=byId("overlapSiteFilter");
     for(const s of data.sites){const opt=E("option","",s.name);opt.value=s.name;select.append(opt);}
     byId("overlapMatrixMode").addEventListener("change",refresh);
@@ -253,3 +253,16 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
   }
   load().catch(err=>{console.error(err);const box=byId("overlapError");box.textContent=err.message;box.hidden=false;});
 })();
+
+// Skilj sista lyckade Actions-körningen från en faktiskt skapad marknadssnapshot.
+fetch("listing_collection_status.json?v=1",{cache:"no-store"})
+  .then(response=>response.ok?response.json():null)
+  .then(info=>{
+    if(!info)return;
+    const el=byId("rentalCollectionLatest");
+    if(!el)return;
+    const count=Number(info.current_input_rows||0);
+    el.textContent=count===0
+      ? "Senaste noterade veckokörning: "+dateText(info.run_utc_date)+". Inga annonsrader i indata – ingen ny marknadsobservation."
+      : "Senaste noterade veckokörning: "+dateText(info.run_utc_date)+". "+numberText(count)+" inlästa annonsrader, utan automatisk verifiering av marknadsaktivitet.";
+  }).catch(()=>{});
