@@ -1,0 +1,40 @@
+name: Validate rental dashboard data
+on:
+  pull_request:
+    paths:
+      - 'docs/villa_site_overlap.json'
+      - 'docs/villa_rental_aggregates.json'
+      - 'docs/uthyrning_smahus.js'
+      - 'docs/uthyrning_smahus.html'
+      - 'docs/listing_collection_status.json'
+      - 'src/write_listing_collection_status.py'
+      - 'tests/test_rental_dashboard_data.py'
+      - '.github/workflows/validate_rental_dashboard.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/villa_site_overlap.json'
+      - 'docs/villa_rental_aggregates.json'
+      - 'docs/uthyrning_smahus.js'
+      - 'docs/uthyrning_smahus.html'
+      - 'docs/listing_collection_status.json'
+      - 'src/write_listing_collection_status.py'
+      - 'tests/test_rental_dashboard_data.py'
+      - '.github/workflows/validate_rental_dashboard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify aggregated network and snapshots
+        run: python -m unittest discover -s tests -v
+      - name: Validate frontend JavaScript
+        run: node --check docs/uthyrning_smahus.js
