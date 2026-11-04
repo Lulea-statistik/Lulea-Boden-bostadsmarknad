@@ -3,9 +3,9 @@ name: Snapshot listings weekly
 on:
   workflow_dispatch:
   schedule:
-    # Sundays 06:30 UTC. A permitted/API-fed current.csv can therefore
-    # be archived once per week without high-frequency collection.
-    - cron: "30 6 * * 0"
+    # Fridays 06:30 UTC to follow the original Friday rental observations.
+    # This job archives supplied current.csv rows; it does NOT scrape websites.
+    - cron: "30 6 * * 5"
 
 permissions:
   contents: write
@@ -33,15 +33,18 @@ jobs:
       - name: Build dashboard data
         run: python src/build_dashboard_data.py
 
+      - name: Write collection status (even with no source rows)
+        run: python src/write_listing_collection_status.py
+
       - name: Commit snapshot and indicators
         run: |
-          if [ -z "$(git status --porcelain -- data/listings data/indicators docs/dashboard_data.json)" ]; then
-            echo "No snapshot or indicator changes."
+          if [ -z "$(git status --porcelain -- data/listings data/indicators docs/dashboard_data.json docs/listing_collection_status.json)" ]; then
+            echo "No snapshot, indicator or status changes."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/listings data/indicators docs/dashboard_data.json
+          git add data/listings data/indicators docs/dashboard_data.json docs/listing_collection_status.json
           git commit -m "Weekly listings snapshot"
           git push
