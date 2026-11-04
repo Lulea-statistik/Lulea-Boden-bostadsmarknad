@@ -35,7 +35,7 @@
 
     <div class="chart-card full rental-overlap">
       <h2>Nätverk – gemensamma objekt mellan webbplatser</h2>
-      <p class="hint">En linje visas när minst ett dokumenterat objekt förekommer på båda webbplatserna. Linjens tjocklek motsvarar antalet gemensamma objekt. Välj en webbplats i överlappningsmatrisen längre ned på sidan för att framhäva dess kopplingar.</p>
+      <p class="hint">Uppdaterat från det privata källregistret: varje nod visar hur många <strong>mastergrupper</strong> som dokumenterats på en webbplats. En linje visar gemensamma mastergrupper, även om annonserna publicerats vid olika tidpunkter. <strong>Detta är inte antal samtidigt aktiva eller lediga hus.</strong> Välj en webbplats i matrisen för att framhäva dess kopplingar.</p>
       <div id="overlapNetwork" class="overlap-network" role="img" aria-label="Nätverk över webbplatser och gemensamma uthyrningsobjekt"></div>
       <h3 class="overlap-subtitle">Webbplatspar med gemensamma objekt</h3>
       <div class="table-scroll"><table class="overlap-pairs-table">
@@ -54,14 +54,20 @@
     </div>
 
 
+    <div class="chart-card full" id="rentalCollectionStatus">
+      <h2>Status för veckovis annonsinsamling</h2>
+      <p class="hint">Det befintliga GitHub Actions-flödet körs söndagar. Körningarna 18 och 25 oktober samt 1 november 2026 lyckades tekniskt, men ingen ny annonsobservation skapades eftersom <code>data/listings/current.csv</code> saknade indata. Fredagarna 23 och 30 oktober har därför inga nya kartläggningsvärden. Frånvaro av indata betyder <strong>saknad observation, inte noll lediga hus</strong>.</p>
+      <p id="rentalCollectionLatest" class="overlap-coverage" aria-live="polite">Nästa körning redovisas separat från antalet annonserade hus.</p>
+    </div>
+
     <div class="chart-card full rental-overlap" id="rentalOverlap">
       <h2>Överlappning mellan uthyrningswebbplatser</h2>
-      <p class="hint">Historisk överlappning enligt den första registerversionen från 16 oktober 2026: 10 källkopplade mastergrupper av 20 masterposter. <strong>Matrisen och nätverket är inte uppdaterade för dagens större register med 48 mastergrupper.</strong> Kopplingar mellan annonser och mastergrupper är inte liktydiga med verifierade unika fysiska byggnader.</p>
+      <p class="hint">Nätverket, matrisen och källfördelningen bygger nu på <strong>48 mastergrupper och 70 registrerade annonsrader</strong> (senaste källgranskning 3 november 2026). Stugknuten och Vrbo ingår. Stuga.se, Houserent och Stayment visas inte som verifierade nätverkskopplingar eftersom underlaget ännu är otillräckligt. <strong>Grupperna är inte alltid verifierat unika fysiska byggnader.</strong></p>
       <div class="overlap-kpis" aria-label="Nyckeltal överlappning">
-        <div class="overlap-kpi"><span>Unika objekt med dokumenterade annonskopplingar</span><strong id="overlapUnique">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper med dokumenterade källkopplingar</span><strong id="overlapUnique">–</strong></div>
         <div class="overlap-kpi"><span>Registrerade annonser</span><strong id="overlapListings">–</strong></div>
-        <div class="overlap-kpi"><span>Objekt på endast en webbplats</span><strong id="overlapSingle">–</strong></div>
-        <div class="overlap-kpi"><span>Objekt på minst två webbplatser</span><strong id="overlapMulti">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper på endast en webbplats</span><strong id="overlapSingle">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper på minst två webbplatser</span><strong id="overlapMulti">–</strong></div>
       </div>
       <p id="overlapCoverage" class="overlap-coverage" aria-live="polite"></p>
     </div>
@@ -89,17 +95,17 @@
     </div>
 
     <div class="chart-card full rental-overlap">
-      <h2>Antal webbplatser per fysiskt objekt</h2>
-      <p class="hint">Varje objekt räknas en gång, oavsett om det annonserats flera gånger på samma webbplats.</p>
+      <h2>Antal webbplatser per registrerad mastergrupp</h2>
+      <p class="hint">En mastergrupp räknas en gång per webbplats även om flera annonser finns. Bokningspaket och preliminära identiteter är markerade som metodbegränsningar.</p>
       <div id="overlapDistribution" class="overlap-distribution" aria-label="Fördelning av antal webbplatser per objekt"></div>
-      <p class="hint">Detta är den ursprungliga, mindre delmängden och resultaten ska inte presenteras som en aktuell överlappning för de 48 mastergrupperna. Registrerad annons betyder inte att objektet är ledigt i dag. <strong>Egna webbplatser</strong> är en källkategori som kan omfatta olika uthyrares webbplatser, inte en gemensam plattform. Inga adresser, annons-ID eller enskilda objektgrupper publiceras.</p>
+      <p class="hint">Detta är en aktuell <em>registeravstämning</em>, inte en samtidighetsanalys av uthyrningsmarknaden. Alla annonskopplingar kan vara historiska och 17 annonsrader är endast verifierade källsideträffar utan daterad annonseringsaktivitet. <strong>Egna webbplatser</strong> är flera olika uthyrares sidor. Inga adresser eller annons-ID:n publiceras.</p>
       <div id="overlapError" class="empty-state" hidden role="alert"></div>
     </div>
 
     <div class="chart-card full rental-method">
       <h2>Metod och datakvalitet</h2>
       <p><strong>Avgränsning.</strong> Bevakningen gäller offentligt annonserade villor, småhus, hus och stugor för uthyrning inom Luleå kommun. Lägenheter och enskilda rum ingår inte om annonserna inte avser ett helt hus eller en självständig uthyrningsenhet.</p>
-      <p><strong>Unika objekt och dubbletter.</strong> Samma fysiska uthyrningsenhet kan annonseras på flera plattformar, men ska bara räknas en gång. Sammanföring kräver starkt stöd i exempelvis adress, storlek, rum, hyra eller objektsnamn. Separata enheter på samma fastighet ska däremot inte slås ihop. Osäkra fall behöver fortsatt granskning.</p>
+      <p><strong>Unika objekt och dubbletter.</strong> Först jämförs annonsernas publicerade originalbilder, särskiljande byggnadsdetaljer och planlösning; därefter käll-ID, beskrivning, area och pris. Fastighetsregister och karta är stöd när annonsmaterialet inte räcker. En mastergrupp är inte automatiskt ett verifierat unikt hus. Osäkra fall behöver fortsatt granskning.</p>
       <p><strong>Tolkning.</strong> Metoden och söktäckningen har utvecklats under perioden, särskilt för korttidsannonser. Serien visar därför hittills antal <em>identifierade</em> objekt i bevakningen, inte en pålitlig förändring av utbudet. En jämförbar tidsserie över <em>unika aktiva objekt</em> kräver upprepade sökningar med samma metod och säker hantering av annonser som blivit inaktiva.</p>
       <p><strong>Adresskvalitet.</strong> Verifierad fullständig adress är ett separat kvalitetsmått, inte ett mått på alla annonser med adressinformation. Airbnb-kartnålar används inte för att härleda husnummer.</p>
       <p><strong>Registerstatus.</strong> Det privata projektet innehåller <span id="rentalReviewed">–</span> dokumenterade <em>mastergrupper</em> (registerstatus 3 november 2026), inte verifierade unika fysiska småhus. Den historiska totalsiffran 66 den 16 oktober är aggregerad och ingen komplett objektvis råexport har hittats i de granskade källorna. För antal självständigt bokningsbara enheter och samtidigt aktiva hus saknas jämförbart underlag. Den offentliga webbplatsen visar enbart aggregerad statistik – inga privata adresser eller annons-ID:n.</p>
