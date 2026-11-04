@@ -256,3 +256,42 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
   }
   load().catch(err=>{console.error(err);const box=byId("overlapError");box.textContent=err.message;box.hidden=false;});
 })();
+
+
+// Klassning av befintliga mastergrupper; inte aktiva eller verifierat unika byggnader.
+(async function loadSuitability() {
+  const tbody = byId("rentalSuitabilityBody");
+  const coverage = byId("rentalSuitabilityCoverage");
+  try {
+    const response = await fetch("villa_suitability_aggregates.json", {cache: "no-store"});
+    if (!response.ok) throw new Error("Klassningsunderlaget är inte publicerat.");
+    const data = await response.json();
+    const counts = data.class_counts || {};
+    const keys = ["A","B","C","D","U"];
+    if (keys.some(k => !Number.isInteger(counts[k]) || counts[k] < 0) ||
+        keys.reduce((n,k)=>n+counts[k],0) !== data.master_groups_reviewed ||
+        data.current_available_permanent_housing !== null)
+      throw new Error("Klassningsaggregatet är inkonsekvent.");
+    const labels = {A:"A – permanentbostadsliknande",B:"B – möjlig permanentbostad",
+      C:"C – begränsad permanentboendefunktion",D:"D – utanför målgruppen",
+      U:"U – underlag saknas"};
+    tbody.replaceChildren();
+    for (const key of keys) {
+      const tr = document.createElement("tr");
+      for (const text of [labels[key], numberText(counts[key])]) {
+        const td = document.createElement("td"); td.textContent = text; tr.append(td);
+      }
+      tbody.append(tr);
+    }
+    coverage.textContent = numberText(data.master_groups_reviewed) +
+      " dokumenterade mastergrupper har behandlats. " +
+      numberText(data.classification_coverage) +
+      " har underlag för klass A–C. Uppgifterna avser inte aktuellt lediga bostäder.";
+  } catch (err) {
+    tbody.replaceChildren();
+    const tr = document.createElement("tr"), td = document.createElement("td");
+    td.colSpan = 2; td.textContent = "Klassningsunderlag saknas eller kunde inte kontrolleras.";
+    tr.append(td); tbody.append(tr);
+    coverage.textContent = err.message;
+  }
+})();
