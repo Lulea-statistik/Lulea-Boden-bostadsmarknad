@@ -1,0 +1,15 @@
+{
+  "scope": "existing_private_registry_master_groups_not_active_rentals",
+  "master_groups_reviewed": 48,
+  "class_counts": {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0,
+    "U": 48
+  },
+  "classification_coverage": 0,
+  "current_available_permanent_housing": null,
+  "historical_total_2026_10_16": 66,
+  "note": "Master groups are not verified unique buildings. U means insufficient evidence; zero A does not mean no year-round homes."
+}
