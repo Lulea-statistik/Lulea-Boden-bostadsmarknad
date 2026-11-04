@@ -1,21 +1,25 @@
 {
   "scope": "Luleå kommun",
-  "snapshot_date": "2026-10-16",
-  "basis": "Historisk överlappningsanalys från den första privata registerversionen 16 oktober 2026 med 20 masterposter och 24 registrerade annonsrader. De 10 analyserade källkopplade grupperna och övriga parvärden har INTE räknats om för det senare privata registret (48 mastergrupper, 69 annonsrader). Inte bekräftad statistik över unika fysiska byggnader.",
+  "snapshot_date": "2026-11-03",
+  "analysis_scope": "latest_private_registry_documented_source_master_links_not_market_availability",
+  "basis": "Registerbaserad källöverlappning: historiskt observerade annonser samt senare verifierade källsidor, inte aktuellt tillgängligt utbud. Siffrorna är baserade på 48 mastergrupper och 70 annonsrader från det privata registret.",
   "coverage": {
     "identified_objects_in_surveillance": 66,
-    "reviewed_objects_in_master": 20,
-    "objects_with_listing_links": 10,
-    "recorded_listing_rows": 24,
-    "distinct_site_object_links": 22,
-    "unique_objects_multi_site": 9,
-    "unique_objects_single_site": 1
+    "reviewed_objects_in_master": 48,
+    "objects_with_listing_links": 48,
+    "recorded_listing_rows": 70,
+    "distinct_site_object_links": 68,
+    "unique_objects_multi_site": 17,
+    "unique_objects_single_site": 31,
+    "master_groups_confirmed": 34,
+    "master_groups_probable": 14,
+    "source_page_only_without_historical_activity": 17
   },
   "sites": [
     {
       "name": "Airbnb",
-      "unique_objects": 4,
-      "recorded_listings": 4
+      "unique_objects": 26,
+      "recorded_listings": 26
     },
     {
       "name": "Booking.com",
@@ -24,8 +28,8 @@
     },
     {
       "name": "Bostadshub",
-      "unique_objects": 2,
-      "recorded_listings": 2
+      "unique_objects": 4,
+      "recorded_listings": 4
     },
     {
       "name": "Bostadslistan",
@@ -34,18 +38,28 @@
     },
     {
       "name": "Egna webbplatser",
-      "unique_objects": 2,
-      "recorded_listings": 2
+      "unique_objects": 3,
+      "recorded_listings": 3
     },
     {
       "name": "Hyrenbostad",
-      "unique_objects": 5,
-      "recorded_listings": 6
+      "unique_objects": 9,
+      "recorded_listings": 10
     },
     {
       "name": "Qasa",
-      "unique_objects": 3,
-      "recorded_listings": 4
+      "unique_objects": 18,
+      "recorded_listings": 19
+    },
+    {
+      "name": "Stugknuten",
+      "unique_objects": 1,
+      "recorded_listings": 1
+    },
+    {
+      "name": "Vrbo",
+      "unique_objects": 1,
+      "recorded_listings": 1
     }
   ],
   "overlap_pairs": [
@@ -60,6 +74,16 @@
       "shared_unique_objects": 2
     },
     {
+      "site_a": "Airbnb",
+      "site_b": "Qasa",
+      "shared_unique_objects": 1
+    },
+    {
+      "site_a": "Airbnb",
+      "site_b": "Vrbo",
+      "shared_unique_objects": 1
+    },
+    {
       "site_a": "Bostadshub",
       "site_b": "Bostadslistan",
       "shared_unique_objects": 2
@@ -72,7 +96,7 @@
     {
       "site_a": "Bostadshub",
       "site_b": "Qasa",
-      "shared_unique_objects": 1
+      "shared_unique_objects": 3
     },
     {
       "site_a": "Bostadslistan",
@@ -85,19 +109,29 @@
       "shared_unique_objects": 2
     },
     {
+      "site_a": "Egna webbplatser",
+      "site_b": "Hyrenbostad",
+      "shared_unique_objects": 1
+    },
+    {
       "site_a": "Hyrenbostad",
       "site_b": "Qasa",
-      "shared_unique_objects": 3
+      "shared_unique_objects": 5
+    },
+    {
+      "site_a": "Qasa",
+      "site_b": "Stugknuten",
+      "shared_unique_objects": 1
     }
   ],
   "site_count_distribution": [
     {
       "site_count": 1,
-      "object_count": 1
+      "object_count": 31
     },
     {
       "site_count": 2,
-      "object_count": 7
+      "object_count": 15
     },
     {
       "site_count": 3,
@@ -108,22 +142,52 @@
       "object_count": 1
     }
   ],
-  "limitations": [
-    "Bara objekt med dokumenterad annonskoppling ingår i överlappningsanalysen.",
-    "Antal annonser är registrerade annonsrader, inte säkert aktiva annonser vid ett visst datum.",
-    "Samma objekt kan ha flera annonser på samma webbplats; sådana annonser ökar inte antalet unika webbplats–objekt-kopplingar.",
-    "Resultaten är inte representativa för samtliga 66 identifierade objekt eller hela uthyrningsmarknaden.",
-    "Analysunderlaget är låst till originalversionen med 20 mastergrupper och 24 annonser; privat register innehåller 48 mastergrupper och 69 annonsrader per 3 november 2026.",
-    "Att en mastergrupp har källkopplingar styrker inte ensam unik fysisk byggnad eller aktuell bokningsbarhet."
+  "pending_sources": [
+    {
+      "name": "Houserent",
+      "candidate_advertisements": 1,
+      "known_aggregator_mirrors_without_master_link": 0,
+      "status": "source_identity_pending_not_accepted_master_overlap"
+    },
+    {
+      "name": "Stayment",
+      "candidate_advertisements": 1,
+      "known_aggregator_mirrors_without_master_link": 0,
+      "status": "source_identity_pending_not_accepted_master_overlap"
+    },
+    {
+      "name": "Stuga.se",
+      "candidate_advertisements": 2,
+      "known_aggregator_mirrors_without_master_link": 2,
+      "status": "source_identity_pending_not_accepted_master_overlap"
+    },
+    {
+      "name": "Stugknuten",
+      "candidate_advertisements": 3,
+      "known_aggregator_mirrors_without_master_link": 0,
+      "status": "source_identity_pending_not_accepted_master_overlap"
+    },
+    {
+      "name": "Vrbo",
+      "candidate_advertisements": 1,
+      "known_aggregator_mirrors_without_master_link": 0,
+      "status": "source_identity_pending_not_accepted_master_overlap"
+    }
   ],
-  "site_category_note": "Egna webbplatser är en kategori för olika uthyrares egna webbplatser, inte en enskild gemensam tjänst.",
-  "analysis_basis_original_commit": "8e3558bf7acd2ee3c09f13861aef896a9336c30e",
-  "analysis_scope": "initial_oct16_master_subset_not_current_master",
-  "analysis_register_master_groups_at_baseline": 20,
-  "analysis_register_listing_rows_at_baseline": 24,
+  "is_current_private_register_overlap": true,
   "latest_private_register_status_date": "2026-11-03",
   "latest_private_register_master_groups": 48,
-  "latest_private_register_listing_rows": 69,
-  "is_current_private_register_overlap": false,
-  "coverage_basis_note": "Alla tal under coverage, sites, overlap_pairs och site_count_distribution avser originalanalysen med 20 mastergrupper och 24 annonsrader, inte det nyare registret. Enskilda adresser och annons-ID:n redovisas inte offentligt."
+  "latest_private_register_listing_rows": 70,
+  "historical_snapshot_2026_10_16_total": 66,
+  "historical_snapshot_2026_10_16_total_not_recomputed": true,
+  "unit_identity_note": "Mastergrupp innebär inte verifierat unikt fysiskt hus; ett bokningspaket kan innehålla flera byggnader och en byggnad kan ha alternativa erbjudanden.",
+  "coverage_basis_note": "Källkopplingarna avser olika historiska eller senare granskade källsidor. De visar inte att annonserna var aktiva samtidigt, och inte att objekten är tillgängliga i dag.",
+  "site_category_note": "Egna webbplatser avser flera uthyrares olika webbplatser, inte en enhetlig tjänst.",
+  "limitations": [
+    "Nätverket visar dokumenterade käll–masterrelationer, inte aktuellt marknadsutbud eller samtidig publicering.",
+    "14 mastergrupper har sannolik men inte slutverifierad dedupliceringsstatus.",
+    "Flera annonser på samma webbplats ökar inte nodens mastergruppsantal.",
+    "Stuga.se-speglingar och olösta Houserent/Stayment-kandidater ger inte någon nätverkskant utan objektspecifik matchning.",
+    "Historiska 66 från oktober har annan täckning än nuvarande register."
+  ]
 }
