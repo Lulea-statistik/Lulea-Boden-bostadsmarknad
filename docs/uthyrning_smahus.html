@@ -89,6 +89,16 @@
       <p class="hint">Andel beräknas som <strong>gemensamma objekt / samtliga unika objekt på minst en av de två webbplatserna</strong> (Jaccards likhetsmått). Andelen är symmetrisk och kan inte summeras över olika webbplatspar.</p>
     </div>
 
+    <div class="chart-card full">
+      <h2>Permanentbostadsfunktion – klassning A–D</h2>
+      <p class="hint">Klassningen avser dokumenterade mastergrupper i det privata registret, inte antal lediga hus. A = året-runt-standard och god tillgänglighet, B = möjlig permanentbostad, C = säsongs- eller geografiskt begränsad, D = utanför målgruppen, U = underlag saknas. Klass U får inte tolkas som olämplig bostad.</p>
+      <div class="table-scroll"><table>
+        <thead><tr><th>Klass</th><th>Antal mastergrupper</th></tr></thead>
+        <tbody id="rentalSuitabilityBody"><tr><td colspan="2">Läser kvalitetsunderlag...</td></tr></tbody>
+      </table></div>
+      <p class="hint" id="rentalSuitabilityCoverage">Ingen klassning av aktuellt lediga småhus kan göras utan verifierad löpande källdata.</p>
+    </div>
+
     <div class="chart-card full rental-overlap">
       <h2>Antal webbplatser per registrerad mastergrupp</h2>
       <p class="hint">Varje mastergrupp räknas en gång per webbplats även om samma hus eller bokningspaket har flera annonser hos samma källa.</p>
@@ -110,6 +120,6 @@
   </section>
 </main>
 <footer><span>Analys-/projektsida. Inte Luleå kommuns officiella webbplats.</span><span>Uthyrningsdata: intern annonsbevakning, enbart aggregerade uppgifter.</span></footer>
-<script src="uthyrning_smahus.js?v=4"></script>
+<script src="uthyrning_smahus.js?v=5"></script>
 </body>
 </html>
