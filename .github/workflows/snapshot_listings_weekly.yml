@@ -3,12 +3,15 @@ name: Snapshot listings weekly
 on:
   workflow_dispatch:
   schedule:
-    # Sundays 06:30 UTC. A permitted/API-fed current.csv can therefore
-    # be archived once per week without high-frequency collection.
-    - cron: "30 6 * * 0"
+    # Fridays 06:30 UTC (07:30 CET / 08:30 CEST).
+    - cron: "30 6 * * 5"
 
 permissions:
   contents: write
+
+concurrency:
+  group: weekly-listings-snapshot
+  cancel-in-progress: false
 
 jobs:
   snapshot:
@@ -25,23 +28,37 @@ jobs:
           python-version: "3.12"
 
       - name: Create weekly snapshot
+        id: snapshot
         run: python src/snapshot_listings.py
 
       - name: Build indicators
+        id: indicators
+        if: ${{ success() }}
         run: python src/build_indicators.py
 
       - name: Build dashboard data
+        id: dashboard
+        if: ${{ success() }}
         run: python src/build_dashboard_data.py
 
-      - name: Commit snapshot and indicators
+      - name: Record run status (including empty/failed collection)
+        if: ${{ always() && steps.snapshot.outcome != '' }}
+        env:
+          SNAPSHOT_OUTCOME: ${{ steps.snapshot.outcome }}
+          INDICATORS_OUTCOME: ${{ steps.indicators.outcome }}
+          DASHBOARD_OUTCOME: ${{ steps.dashboard.outcome }}
+        run: python src/write_snapshot_status.py
+
+      - name: Commit snapshot, status and indicators
+        if: ${{ always() && steps.snapshot.outcome != '' }}
         run: |
           if [ -z "$(git status --porcelain -- data/listings data/indicators docs/dashboard_data.json)" ]; then
-            echo "No snapshot or indicator changes."
+            echo "No snapshot, status or indicator changes."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/listings data/indicators docs/dashboard_data.json
-          git commit -m "Weekly listings snapshot"
+          git commit -m "Weekly listings snapshot and run status"
           git push
