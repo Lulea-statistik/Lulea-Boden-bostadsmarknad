@@ -229,7 +229,7 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
   function refresh() {matrix();network();}
 
   async function load() {
-    const response=await fetch("villa_site_overlap.json?v=1",{cache:"no-store"});
+    const response=await fetch("villa_site_overlap.json?v=4",{cache:"no-store"});
     if(!response.ok)throw new Error("Kunde inte läsa data för webbplatsöverlappning.");
     const data=await response.json();
     validate(data);OVERLAP=data;
@@ -238,13 +238,16 @@ fetch("villa_rental_aggregates.json?v=1", {cache:"no-store"})
     byId("overlapSingle").textContent=fmt(data.coverage.unique_objects_single_site);
     byId("overlapMulti").textContent=fmt(data.coverage.unique_objects_multi_site);
     byId("overlapCoverage").textContent=
-      "Historiskt överlappningsunderlag (16 okt 2026): "+fmt(data.coverage.objects_with_listing_links)+" grupper med annonskopplingar av "+
-      fmt(data.coverage.reviewed_objects_in_master)+" mastergrupper i den ursprungliga analysen. "+
-      fmt(data.coverage.recorded_listing_rows)+" ursprungliga annonsrader ger "+
-      fmt(data.coverage.distinct_site_object_links)+" kombinationer av webbplats och mastergrupp. "+
-      "Privat register har senare "+fmt(data.latest_private_register_master_groups)+" mastergrupper och "+
-      fmt(data.latest_private_register_listing_rows)+" annonsrader (uppdaterat "+dateText(data.latest_private_register_status_date)+
-      "). Nätverk, matris och parvärden är INTE omräknade för det nyare registret.";
+      "Omräknat dokumenterat källregister ("+dateText(data.latest_private_register_status_date)+"): "+
+      fmt(data.coverage.objects_with_listing_links)+" mastergrupper med källkopplingar och "+
+      fmt(data.coverage.recorded_listing_rows)+" annonsrader. "+
+      fmt(data.coverage.distinct_site_object_links)+" unika webbplats–masterkopplingar, varav "+
+      fmt(data.coverage.unique_objects_multi_site)+" mastergrupper på minst två webbplatser. "+
+      fmt(data.coverage.source_page_only_without_historical_activity)+" annonsrader är endast verifierade källsidor utan fastställd aktivitet. "+
+      "Nätverket visar inte samtidigt aktiva annonser eller säkert unika fysiska byggnader.";
+    const pending=(data.pending_sources||[]).map(x=>x.name+" ("+fmt(x.candidate_advertisements)+" ej färdigmatchade)").join(", ");
+    byId("overlapPending").textContent=pending?
+      "Ytterligare källkandidater som ännu inte får bilda nätverkskanter: "+pending+". Matchning av annonserna mot befintliga objekt återstår.":"";
     const select=byId("overlapSiteFilter");
     for(const s of data.sites){const opt=E("option","",s.name);opt.value=s.name;select.append(opt);}
     byId("overlapMatrixMode").addEventListener("change",refresh);
