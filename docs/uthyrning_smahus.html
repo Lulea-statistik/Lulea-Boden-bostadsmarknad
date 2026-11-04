@@ -58,10 +58,10 @@
       <h2>Överlappning mellan uthyrningswebbplatser</h2>
       <p class="hint">Källöverlappningen är omräknad för det dokumenterade registret per 3 november 2026. Både historiskt rapporterade annonser och senare verifierade källsideträffar ingår. <strong>En mastergrupp är inte nödvändigtvis en slutligt verifierad unik fysisk byggnad, och det här är inte ett mått på samtidigt lediga hus.</strong></p>
       <div class="overlap-kpis" aria-label="Nyckeltal överlappning">
-        <div class="overlap-kpi"><span>Unika objekt med dokumenterade annonskopplingar</span><strong id="overlapUnique">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper med dokumenterade annonskopplingar</span><strong id="overlapUnique">–</strong></div>
         <div class="overlap-kpi"><span>Registrerade annonser</span><strong id="overlapListings">–</strong></div>
-        <div class="overlap-kpi"><span>Objekt på endast en webbplats</span><strong id="overlapSingle">–</strong></div>
-        <div class="overlap-kpi"><span>Objekt på minst två webbplatser</span><strong id="overlapMulti">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper på endast en webbplats</span><strong id="overlapSingle">–</strong></div>
+        <div class="overlap-kpi"><span>Mastergrupper på minst två webbplatser</span><strong id="overlapMulti">–</strong></div>
       </div>
       <p id="overlapCoverage" class="overlap-coverage" aria-live="polite"></p>
       <p id="overlapPending" class="hint" aria-live="polite"></p>
@@ -71,7 +71,7 @@
       <div class="overlap-tools">
         <div>
           <h2>Överlappningsmatris</h2>
-          <p class="hint">Varje ruta visar gemensamma unika objekt mellan två webbplatser. Diagonalen visar samtliga objekt på respektive webbplats.</p>
+          <p class="hint">Varje ruta visar antal gemensamma registrerade mastergrupper mellan två webbplatser. Diagonalen visar alla mastergrupper med annonskoppling till respektive källa, inte verifierat unika fysiska byggnader.</p>
         </div>
         <div class="page-tools">
           <label for="overlapMatrixMode">Visa mått
@@ -91,7 +91,7 @@
 
     <div class="chart-card full rental-overlap">
       <h2>Antal webbplatser per registrerad mastergrupp</h2>
-      <p class="hint">Varje objekt räknas en gång, oavsett om det annonserats flera gånger på samma webbplats.</p>
+      <p class="hint">Varje mastergrupp räknas en gång per webbplats även om samma hus eller bokningspaket har flera annonser hos samma källa.</p>
       <div id="overlapDistribution" class="overlap-distribution" aria-label="Fördelning av antal webbplatser per objekt"></div>
       <p class="hint">Fördelningen gäller det nu dokumenterade registret, inklusive historiska källor och källsideträffar. Registrerad annons betyder inte att objektet är ledigt i dag. <strong>Egna webbplatser</strong> är en källkategori som kan omfatta olika uthyrares webbplatser, inte en gemensam plattform. Inga adresser, annons-ID eller enskilda objektgrupper publiceras.</p>
       <div id="overlapError" class="empty-state" hidden role="alert"></div>
