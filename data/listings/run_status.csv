@@ -1,2 +1,3 @@
 run_id,run_attempt,run_at_utc,run_date_utc,trigger,snapshot_result,indicators_result,dashboard_result,input_rows,collection_status,workflow_status
 41798669501,1,2026-11-04T08:20:01+00:00,2026-11-04,workflow_dispatch,success,success,success,0,no_input_rows,success_no_data
+42234130195,1,2026-11-06T14:27:53+00:00,2026-11-06,schedule,success,success,success,0,no_input_rows,success_no_data
